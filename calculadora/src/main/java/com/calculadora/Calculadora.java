@@ -32,6 +32,7 @@ public class Calculadora extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btGroupOperaciones = new javax.swing.ButtonGroup();
         jTabbedCalculadora = new javax.swing.JTabbedPane();
         jPanelBotones = new javax.swing.JPanel();
         jTextOp1PB = new javax.swing.JTextField();
@@ -42,9 +43,30 @@ public class Calculadora extends javax.swing.JFrame {
         jButtonDividir = new javax.swing.JButton();
         jLabelResultadoPB = new javax.swing.JLabel();
         jPanelRadioCheck = new javax.swing.JPanel();
+        jTextOp1PR = new javax.swing.JTextField();
+        jTextOp2PR = new javax.swing.JTextField();
+        jLabelResultadoPR = new javax.swing.JLabel();
+        jRadioButtonSumar = new javax.swing.JRadioButton();
+        jRadioButtonRestar = new javax.swing.JRadioButton();
+        jRadioButtonMultiplicar = new javax.swing.JRadioButton();
+        jRadioButtonDividir = new javax.swing.JRadioButton();
+        jCheckBoxDecimales = new javax.swing.JCheckBox();
+        jButtonCalcular = new javax.swing.JButton();
         jPanelCombo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextOp1PB.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextOp1PBFocusGained(evt);
+            }
+        });
+
+        jTextOp2PB.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextOp2PBFocusGained(evt);
+            }
+        });
 
         jButtonSumar.setText("Sumar");
         jButtonSumar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +90,11 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         jButtonDividir.setText("Dividir");
+        jButtonDividir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDividirActionPerformed(evt);
+            }
+        });
 
         jLabelResultadoPB.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
 
@@ -88,14 +115,13 @@ public class Calculadora extends javax.swing.JFrame {
                     .addComponent(jButtonDividir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabelResultadoPB, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanelBotonesLayout.setVerticalGroup(
             jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBotonesLayout.createSequentialGroup()
                 .addGap(4, 4, 4)
                 .addComponent(jButtonSumar)
-                .addGap(18, 18, 18)
                 .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelBotonesLayout.createSequentialGroup()
                         .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -110,20 +136,109 @@ public class Calculadora extends javax.swing.JFrame {
                         .addComponent(jLabelResultadoPB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonDividir)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         jTabbedCalculadora.addTab("Botones", jPanelBotones);
+
+        jTextOp1PR.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextOp1PRFocusGained(evt);
+            }
+        });
+
+        jTextOp2PR.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextOp2PRFocusGained(evt);
+            }
+        });
+        jTextOp2PR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextOp2PRActionPerformed(evt);
+            }
+        });
+
+        jLabelResultadoPR.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
+
+        btGroupOperaciones.add(jRadioButtonSumar);
+        jRadioButtonSumar.setText("Sumar");
+        jRadioButtonSumar.setActionCommand(Operaciones.SUMAR.toString());
+
+        btGroupOperaciones.add(jRadioButtonRestar);
+        jRadioButtonRestar.setText("Restar");
+        jRadioButtonRestar.setActionCommand(Operaciones.RESTAR.toString());
+
+        btGroupOperaciones.add(jRadioButtonMultiplicar);
+        jRadioButtonMultiplicar.setText("Multiplicar");
+        jRadioButtonMultiplicar.setActionCommand(Operaciones.MULTIPLICAR.toString());
+
+        btGroupOperaciones.add(jRadioButtonDividir);
+        jRadioButtonDividir.setText("Dividir");
+        jRadioButtonDividir.setActionCommand(Operaciones.DIVIDIR.toString());
+
+        jCheckBoxDecimales.setText("Decimales");
+
+        jButtonCalcular.setText("=");
+        jButtonCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCalcularActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelRadioCheckLayout = new javax.swing.GroupLayout(jPanelRadioCheck);
         jPanelRadioCheck.setLayout(jPanelRadioCheckLayout);
         jPanelRadioCheckLayout.setHorizontalGroup(
             jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGroup(jPanelRadioCheckLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jRadioButtonSumar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelRadioCheckLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextOp2PR, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+                    .addComponent(jTextOp1PR))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRadioCheckLayout.createSequentialGroup()
+                        .addComponent(jCheckBoxDecimales)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelRadioCheckLayout.createSequentialGroup()
+                        .addGroup(jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButtonMultiplicar)
+                            .addComponent(jRadioButtonDividir))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(jLabelResultadoPR, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(jPanelRadioCheckLayout.createSequentialGroup()
+                        .addComponent(jRadioButtonRestar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanelRadioCheckLayout.setVerticalGroup(
             jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 273, Short.MAX_VALUE)
+            .addGroup(jPanelRadioCheckLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jRadioButtonSumar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextOp1PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButtonRestar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextOp2PR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelResultadoPR, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelRadioCheckLayout.createSequentialGroup()
+                        .addGroup(jPanelRadioCheckLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRadioButtonMultiplicar)
+                            .addComponent(jButtonCalcular))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButtonDividir)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jCheckBoxDecimales)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         jTabbedCalculadora.addTab("Radio/Check", jPanelRadioCheck);
@@ -132,7 +247,7 @@ public class Calculadora extends javax.swing.JFrame {
         jPanelCombo.setLayout(jPanelComboLayout);
         jPanelComboLayout.setHorizontalGroup(
             jPanelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
         jPanelComboLayout.setVerticalGroup(
             jPanelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,29 +271,88 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSumarActionPerformed
-
-        compruebaOperandos(jTextOp1PB, jTextOp2PB,jLabelResultadoPB,Operaciones.SUMAR);
+        compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.SUMAR);
     }//GEN-LAST:event_jButtonSumarActionPerformed
 
     private void jButtonRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRestarActionPerformed
         // TODO add your handling code here:
-        compruebaOperandos(jTextOp1PB, jTextOp2PB,jLabelResultadoPB,Operaciones.RESTAR);
+        compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.RESTAR);
     }//GEN-LAST:event_jButtonRestarActionPerformed
 
     private void jButtonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiplicarActionPerformed
         // TODO add your handling code here:
+        compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.MULTIPLICAR);
     }//GEN-LAST:event_jButtonMultiplicarActionPerformed
+
+    private void jButtonDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDividirActionPerformed
+        // TODO add your handling code here:
+        compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.DIVIDIR);
+    }//GEN-LAST:event_jButtonDividirActionPerformed
+
+    private void jTextOp2PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextOp2PRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextOp2PRActionPerformed
+
+    private void jTextOp2PBFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextOp2PBFocusGained
+        // TODO add your handling code here:
+        ponerBlancaTextField((JTextField) evt.getSource());
+    }//GEN-LAST:event_jTextOp2PBFocusGained
+
+    private void jTextOp1PBFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextOp1PBFocusGained
+        // TODO add your handling code here:
+         ponerBlancaTextField((JTextField) evt.getSource());
+    }//GEN-LAST:event_jTextOp1PBFocusGained
+
+    private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
+        // TODO add your handling code here:
+               
+        compruebaOperandos(jTextOp1PR, jTextOp2PR, jLabelResultadoPR, 
+                Operaciones.valueOf(btGroupOperaciones.getSelection().getActionCommand()),
+                jCheckBoxDecimales.isSelected());
+    }//GEN-LAST:event_jButtonCalcularActionPerformed
+
+    private void jTextOp1PRFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextOp1PRFocusGained
+        // TODO add your handling code here:
+        ponerBlancaTextField((JTextField) evt.getSource());
+    }//GEN-LAST:event_jTextOp1PRFocusGained
+
+    private void jTextOp2PRFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextOp2PRFocusGained
+        // TODO add your handling code here:
+        ponerBlancaTextField((JTextField) evt.getSource());
+    }//GEN-LAST:event_jTextOp2PRFocusGained
 
     private double op1 = 0;
     private double op2 = 0;
 
-    private boolean compruebaOperando(JTextField jTextOp, boolean decimales) {
+    private void ponerBlancaTextField(JTextField jTextOp)
+    {
+        jTextOp.setBackground(Color.white);
+    }
+    
+    private boolean compruebaOperando1(JTextField jTextOp, boolean decimales) {
         boolean error = false;
         try {
             if (decimales) {
                 op1 = Double.parseDouble(jTextOp.getText());
             } else {
                 op1 = Integer.parseInt(jTextOp.getText());
+            }
+
+        } catch (Exception e) {
+
+            jTextOp.setBackground(Color.red);
+            error = true;
+        }
+        return error;
+    }
+
+    private boolean compruebaOperando2(JTextField jTextOp, boolean decimales) {
+        boolean error = false;
+        try {
+            if (decimales) {
+                op2 = Double.parseDouble(jTextOp.getText());
+            } else {
+                op2 = Integer.parseInt(jTextOp.getText());
             }
 
         } catch (Exception e) {
@@ -196,17 +370,17 @@ public class Calculadora extends javax.swing.JFrame {
 
     private boolean compruebaOperandos(JTextField jTextOp1, JTextField jTextOp2,
             JLabel jLabelResultado, Operaciones operacion, boolean decimales) {
-        
-        boolean error = compruebaOperando(jTextOp1, decimales);
 
-        boolean error2 = compruebaOperando(jTextOp2, decimales);
+        boolean error = compruebaOperando1(jTextOp1, decimales);
+
+        boolean error2 = compruebaOperando2(jTextOp2, decimales);
 
         error = error || error2;
 
         if (error) {
             JOptionPane.showMessageDialog(this, "eso no es un numero", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            double resultado=0;
+            double resultado = 0;
             switch (operacion) {
                 case SUMAR:
                     resultado = op1 + op2;
@@ -220,11 +394,18 @@ public class Calculadora extends javax.swing.JFrame {
                 case DIVIDIR:
                     resultado = op1 / op2;
                     break;
+                default:
+                    JOptionPane.showMessageDialog(this, "No has elegido operacion", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    error = true;
+                    break;
             }
-            if (!decimales)
-                jLabelResultado.setText((int)resultado+"");
-            else 
-                jLabelResultado.setText(resultado+"");
+            if (!error) {
+                if (!decimales) {
+                    jLabelResultado.setText((int) resultado + "");
+                } else {
+                    jLabelResultado.setText(resultado + "");
+                }
+            }
         }
 
         return error;
@@ -269,16 +450,26 @@ public class Calculadora extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btGroupOperaciones;
+    private javax.swing.JButton jButtonCalcular;
     private javax.swing.JButton jButtonDividir;
     private javax.swing.JButton jButtonMultiplicar;
     private javax.swing.JButton jButtonRestar;
     private javax.swing.JButton jButtonSumar;
+    private javax.swing.JCheckBox jCheckBoxDecimales;
     private javax.swing.JLabel jLabelResultadoPB;
+    private javax.swing.JLabel jLabelResultadoPR;
     private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelCombo;
     private javax.swing.JPanel jPanelRadioCheck;
+    private javax.swing.JRadioButton jRadioButtonDividir;
+    private javax.swing.JRadioButton jRadioButtonMultiplicar;
+    private javax.swing.JRadioButton jRadioButtonRestar;
+    private javax.swing.JRadioButton jRadioButtonSumar;
     private javax.swing.JTabbedPane jTabbedCalculadora;
     private javax.swing.JTextField jTextOp1PB;
+    private javax.swing.JTextField jTextOp1PR;
     private javax.swing.JTextField jTextOp2PB;
+    private javax.swing.JTextField jTextOp2PR;
     // End of variables declaration//GEN-END:variables
 }
