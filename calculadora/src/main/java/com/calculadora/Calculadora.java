@@ -6,7 +6,9 @@
 package com.calculadora;
 
 import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -18,7 +20,7 @@ public class Calculadora extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public Calculadora() {
-       initComponents();
+        initComponents();
     }
 
     /**
@@ -154,11 +156,13 @@ public class Calculadora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSumarActionPerformed
-        // TODO add your handling code here:
+
+        compruebaOperandos(jTextOp1PB, jTextOp2PB,jLabelResultadoPB,Operaciones.SUMAR);
     }//GEN-LAST:event_jButtonSumarActionPerformed
 
     private void jButtonRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRestarActionPerformed
         // TODO add your handling code here:
+        compruebaOperandos(jTextOp1PB, jTextOp2PB,jLabelResultadoPB,Operaciones.RESTAR);
     }//GEN-LAST:event_jButtonRestarActionPerformed
 
     private void jButtonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiplicarActionPerformed
@@ -167,35 +171,65 @@ public class Calculadora extends javax.swing.JFrame {
 
     private double op1 = 0;
     private double op2 = 0;
-    
-    private boolean compruebaOperandos()
-    {
-        
+
+    private boolean compruebaOperando(JTextField jTextOp, boolean decimales) {
         boolean error = false;
         try {
-            op1 = Integer.parseInt(jTextOp1PB.getText());
+            if (decimales) {
+                op1 = Double.parseDouble(jTextOp.getText());
+            } else {
+                op1 = Integer.parseInt(jTextOp.getText());
+            }
+
         } catch (Exception e) {
 
-            jTextOp1PB.setBackground(Color.red);
+            jTextOp.setBackground(Color.red);
             error = true;
         }
-        try {
-            op2 = Integer.parseInt(jTextOp2PB.getText());
-        } catch (Exception e) {
-            jTextOp2PB.setBackground(Color.red);
-            error = true;
-        }
+        return error;
+    }
+
+    private boolean compruebaOperandos(JTextField jTextOp1, JTextField jTextOp2,
+            JLabel jLabelResultado, Operaciones operacion) {
+        return compruebaOperandos(jTextOp1, jTextOp2, jLabelResultado, operacion, false);
+    }
+
+    private boolean compruebaOperandos(JTextField jTextOp1, JTextField jTextOp2,
+            JLabel jLabelResultado, Operaciones operacion, boolean decimales) {
         
-        if (error)
-        {
+        boolean error = compruebaOperando(jTextOp1, decimales);
+
+        boolean error2 = compruebaOperando(jTextOp2, decimales);
+
+        error = error || error2;
+
+        if (error) {
             JOptionPane.showMessageDialog(this, "eso no es un numero", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            double resultado=0;
+            switch (operacion) {
+                case SUMAR:
+                    resultado = op1 + op2;
+                    break;
+                case RESTAR:
+                    resultado = op1 - op2;
+                    break;
+                case MULTIPLICAR:
+                    resultado = op1 * op2;
+                    break;
+                case DIVIDIR:
+                    resultado = op1 / op2;
+                    break;
+            }
+            if (!decimales)
+                jLabelResultado.setText((int)resultado+"");
+            else 
+                jLabelResultado.setText(resultado+"");
         }
 
         return error;
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
