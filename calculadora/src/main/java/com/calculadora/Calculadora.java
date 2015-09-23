@@ -53,6 +53,10 @@ public class Calculadora extends javax.swing.JFrame {
         jCheckBoxDecimales = new javax.swing.JCheckBox();
         jButtonCalcular = new javax.swing.JButton();
         jPanelCombo = new javax.swing.JPanel();
+        jTextOp1PC = new javax.swing.JTextField();
+        jTextOp2PC = new javax.swing.JTextField();
+        jComboBoxOperaciones = new javax.swing.JComboBox();
+        jLabelResultadoPC = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,7 +119,7 @@ public class Calculadora extends javax.swing.JFrame {
                     .addComponent(jButtonDividir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabelResultadoPB, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanelBotonesLayout.setVerticalGroup(
             jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +213,7 @@ public class Calculadora extends javax.swing.JFrame {
                             .addComponent(jRadioButtonDividir))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addComponent(jLabelResultadoPR, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21))
                     .addGroup(jPanelRadioCheckLayout.createSequentialGroup()
@@ -243,15 +247,58 @@ public class Calculadora extends javax.swing.JFrame {
 
         jTabbedCalculadora.addTab("Radio/Check", jPanelRadioCheck);
 
+        jTextOp1PC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextOp1PCFocusGained(evt);
+            }
+        });
+
+        jTextOp2PC.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextOp2PCFocusGained(evt);
+            }
+        });
+
+        jComboBoxOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SUMAR", "RESTAR", "MULTIPLICAR", "DIVIDIR" }));
+        jComboBoxOperaciones.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxOperacionesItemStateChanged(evt);
+            }
+        });
+
+        jLabelResultadoPC.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
+
         javax.swing.GroupLayout jPanelComboLayout = new javax.swing.GroupLayout(jPanelCombo);
         jPanelCombo.setLayout(jPanelComboLayout);
         jPanelComboLayout.setHorizontalGroup(
             jPanelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 409, Short.MAX_VALUE)
+            .addGroup(jPanelComboLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextOp2PC, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                    .addComponent(jTextOp1PC))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelResultadoPC, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanelComboLayout.setVerticalGroup(
             jPanelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 273, Short.MAX_VALUE)
+            .addGroup(jPanelComboLayout.createSequentialGroup()
+                .addGroup(jPanelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelComboLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jComboBoxOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelComboLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelResultadoPC, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelComboLayout.createSequentialGroup()
+                                .addComponent(jTextOp1PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextOp2PC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         jTabbedCalculadora.addTab("Combo", jPanelCombo);
@@ -320,6 +367,22 @@ public class Calculadora extends javax.swing.JFrame {
         // TODO add your handling code here:
         ponerBlancaTextField((JTextField) evt.getSource());
     }//GEN-LAST:event_jTextOp2PRFocusGained
+
+    private void jTextOp1PCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextOp1PCFocusGained
+        // TODO add your handling code here:
+        ponerBlancaTextField((JTextField) evt.getSource());
+    }//GEN-LAST:event_jTextOp1PCFocusGained
+
+    private void jTextOp2PCFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextOp2PCFocusGained
+        // TODO add your handling code here:
+        ponerBlancaTextField((JTextField) evt.getSource());
+    }//GEN-LAST:event_jTextOp2PCFocusGained
+
+    private void jComboBoxOperacionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxOperacionesItemStateChanged
+        // TODO add your handling code here:
+        compruebaOperandos(jTextOp1PC, jTextOp2PC, jLabelResultadoPC, 
+                Operaciones.valueOf((String)evt.getItem()));
+    }//GEN-LAST:event_jComboBoxOperacionesItemStateChanged
 
     private double op1 = 0;
     private double op2 = 0;
@@ -457,7 +520,9 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRestar;
     private javax.swing.JButton jButtonSumar;
     private javax.swing.JCheckBox jCheckBoxDecimales;
+    private javax.swing.JComboBox jComboBoxOperaciones;
     private javax.swing.JLabel jLabelResultadoPB;
+    private javax.swing.JLabel jLabelResultadoPC;
     private javax.swing.JLabel jLabelResultadoPR;
     private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelCombo;
@@ -468,8 +533,10 @@ public class Calculadora extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonSumar;
     private javax.swing.JTabbedPane jTabbedCalculadora;
     private javax.swing.JTextField jTextOp1PB;
+    private javax.swing.JTextField jTextOp1PC;
     private javax.swing.JTextField jTextOp1PR;
     private javax.swing.JTextField jTextOp2PB;
+    private javax.swing.JTextField jTextOp2PC;
     private javax.swing.JTextField jTextOp2PR;
     // End of variables declaration//GEN-END:variables
 }
