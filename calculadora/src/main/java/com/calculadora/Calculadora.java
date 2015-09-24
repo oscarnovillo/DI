@@ -317,6 +317,7 @@ public class Calculadora extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //<editor-fold defaultstate="collapsed" desc="Eventos Panel Botones ">
     private void jButtonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSumarActionPerformed
         compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.SUMAR);
     }//GEN-LAST:event_jButtonSumarActionPerformed
@@ -349,7 +350,9 @@ public class Calculadora extends javax.swing.JFrame {
         // TODO add your handling code here:
          ponerBlancaTextField((JTextField) evt.getSource());
     }//GEN-LAST:event_jTextOp1PBFocusGained
-
+//</editor-fold>
+    
+    
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
         // TODO add your handling code here:
                
