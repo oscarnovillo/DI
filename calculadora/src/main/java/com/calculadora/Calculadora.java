@@ -319,22 +319,22 @@ public class Calculadora extends javax.swing.JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="Eventos Panel Botones ">
     private void jButtonSumarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSumarActionPerformed
-        compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.SUMAR);
+        calcula(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.SUMAR);
     }//GEN-LAST:event_jButtonSumarActionPerformed
 
     private void jButtonRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRestarActionPerformed
         // TODO add your handling code here:
-        compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.RESTAR);
+        calcula(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.RESTAR);
     }//GEN-LAST:event_jButtonRestarActionPerformed
 
     private void jButtonMultiplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMultiplicarActionPerformed
         // TODO add your handling code here:
-        compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.MULTIPLICAR);
+        calcula(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.MULTIPLICAR);
     }//GEN-LAST:event_jButtonMultiplicarActionPerformed
 
     private void jButtonDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDividirActionPerformed
         // TODO add your handling code here:
-        compruebaOperandos(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.DIVIDIR);
+        calcula(jTextOp1PB, jTextOp2PB, jLabelResultadoPB, Operaciones.DIVIDIR);
     }//GEN-LAST:event_jButtonDividirActionPerformed
 
     private void jTextOp2PRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextOp2PRActionPerformed
@@ -356,7 +356,7 @@ public class Calculadora extends javax.swing.JFrame {
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
         // TODO add your handling code here:
                
-        compruebaOperandos(jTextOp1PR, jTextOp2PR, jLabelResultadoPR, 
+        calcula(jTextOp1PR, jTextOp2PR, jLabelResultadoPR, 
                 Operaciones.valueOf(btGroupOperaciones.getSelection().getActionCommand()),
                 jCheckBoxDecimales.isSelected());
     }//GEN-LAST:event_jButtonCalcularActionPerformed
@@ -383,7 +383,7 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jComboBoxOperacionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxOperacionesItemStateChanged
         // TODO add your handling code here:
-        compruebaOperandos(jTextOp1PC, jTextOp2PC, jLabelResultadoPC, 
+        calcula(jTextOp1PC, jTextOp2PC, jLabelResultadoPC, 
                 Operaciones.valueOf((String)evt.getItem()));
     }//GEN-LAST:event_jComboBoxOperacionesItemStateChanged
 
@@ -429,12 +429,12 @@ public class Calculadora extends javax.swing.JFrame {
         return error;
     }
 
-    private boolean compruebaOperandos(JTextField jTextOp1, JTextField jTextOp2,
+    private boolean calcula(JTextField jTextOp1, JTextField jTextOp2,
             JLabel jLabelResultado, Operaciones operacion) {
-        return compruebaOperandos(jTextOp1, jTextOp2, jLabelResultado, operacion, false);
+        return calcula(jTextOp1, jTextOp2, jLabelResultado, operacion, false);
     }
 
-    private boolean compruebaOperandos(JTextField jTextOp1, JTextField jTextOp2,
+    private boolean calcula(JTextField jTextOp1, JTextField jTextOp2,
             JLabel jLabelResultado, Operaciones operacion, boolean decimales) {
 
         boolean error = compruebaOperando1(jTextOp1, decimales);
