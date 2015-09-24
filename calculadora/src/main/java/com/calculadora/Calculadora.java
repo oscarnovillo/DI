@@ -6,6 +6,7 @@
 package com.calculadora;
 
 import java.awt.Color;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -260,9 +261,9 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         jComboBoxOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SUMAR", "RESTAR", "MULTIPLICAR", "DIVIDIR" }));
-        jComboBoxOperaciones.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBoxOperacionesItemStateChanged(evt);
+        jComboBoxOperaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxOperacionesActionPerformed(evt);
             }
         });
 
@@ -381,11 +382,12 @@ public class Calculadora extends javax.swing.JFrame {
         ponerBlancaTextField((JTextField) evt.getSource());
     }//GEN-LAST:event_jTextOp2PCFocusGained
 
-    private void jComboBoxOperacionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxOperacionesItemStateChanged
+    private void jComboBoxOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOperacionesActionPerformed
         // TODO add your handling code here:
-        calcula(jTextOp1PC, jTextOp2PC, jLabelResultadoPC, 
-                Operaciones.valueOf((String)evt.getItem()));
-    }//GEN-LAST:event_jComboBoxOperacionesItemStateChanged
+
+         calcula(jTextOp1PC, jTextOp2PC, jLabelResultadoPC, 
+                Operaciones.valueOf(jComboBoxOperaciones.getSelectedItem().toString()));
+    }//GEN-LAST:event_jComboBoxOperacionesActionPerformed
 
     private double op1 = 0;
     private double op2 = 0;
@@ -503,9 +505,7 @@ public class Calculadora extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Calculadora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
