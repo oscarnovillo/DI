@@ -94,6 +94,8 @@ public class Calculadora extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedCalculadora.setName("jTabbedCalculadora"); // NOI18N
+
         jTextOp1PB.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextOp1PBFocusGained(evt);
@@ -107,6 +109,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         jButtonSumar.setText("Sumar");
+        jButtonSumar.setName("jButtonSumar"); // NOI18N
         jButtonSumar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSumarActionPerformed(evt);

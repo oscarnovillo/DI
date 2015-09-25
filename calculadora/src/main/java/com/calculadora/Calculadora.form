@@ -38,6 +38,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="jTabbedCalculadora">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="jTabbedCalculadora" noResource="true"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -115,6 +118,7 @@
             <Component class="javax.swing.JButton" name="jButtonSumar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sumar"/>
+                <Property name="name" type="java.lang.String" value="jButtonSumar" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSumarActionPerformed"/>
