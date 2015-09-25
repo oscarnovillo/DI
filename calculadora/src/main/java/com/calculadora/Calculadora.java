@@ -28,6 +28,18 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void initMyself() {
         rellenaComboOperaciones();
+        java.awt.event.FocusAdapter fa = new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+              ((JTextField) evt.getSource()).setBackground(Color.white);
+            }
+        };
+        jTextOp1PB.addFocusListener(fa);
+        jTextOp2PB.addFocusListener(fa);
+        jTextOp1PR.addFocusListener(fa);
+        jTextOp2PR.addFocusListener(fa);
+        jTextOp1PC.addFocusListener(fa);
+        jTextOp2PC.addFocusListener(fa);
+        
     }
 
     private void rellenaComboOperaciones() {
@@ -369,7 +381,6 @@ public class Calculadora extends javax.swing.JFrame {
 
 
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
-
         calcula(jTextOp1PR, jTextOp2PR, jLabelResultadoPR,
                 Operaciones.valueOf(btGroupOperaciones.getSelection().getActionCommand()),
                 jCheckBoxDecimales.isSelected());
