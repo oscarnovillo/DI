@@ -6,6 +6,7 @@
 package com.calculadora;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,20 +31,17 @@ public class Calculadora extends javax.swing.JFrame {
     }
 
     private void rellenaComboOperaciones() {
-        //ItemListener[] listener = jComboBoxOperaciones.getItemListeners();
-        //jComboBoxOperaciones.removeItemListener(listener[0]);
         jComboBoxOperaciones.removeAllItems();
         jComboBoxOperaciones.addItem(new ComboOptionOperacion("Sumar", Operaciones.SUMAR));
         jComboBoxOperaciones.addItem(new ComboOptionOperacion("Restar", Operaciones.RESTAR));
         jComboBoxOperaciones.addItem(new ComboOptionOperacion("Multiplicar", Operaciones.MULTIPLICAR));
         jComboBoxOperaciones.addItem(new ComboOptionOperacion("Dividir", Operaciones.DIVIDIR));//        jComboBoxOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PACO", "MARIA", "ATLETI", "CAMPEON" }));
-        //jComboBoxOperaciones.addItemListener(listener[0]);
-        jComboBoxOperaciones.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                // TODO add your handling code here:
-        calcula(jTextOp1PC, jTextOp2PC, jLabelResultadoPC,
-                ((ComboOptionOperacion) evt.getItem()).getOperacion());
-            }
+        
+        jComboBoxOperaciones.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+               calcula(jTextOp1PC, jTextOp2PC, jLabelResultadoPC,
+                ((ComboOptionOperacion)(jComboBoxOperaciones.getSelectedItem())).getOperacion());  }
         });
     }
 
