@@ -6,6 +6,7 @@
 package com.calculadora;
 
 import java.awt.Color;
+import java.awt.event.ItemListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -21,6 +22,29 @@ public class Calculadora extends javax.swing.JFrame {
      */
     public Calculadora() {
         initComponents();
+        initMyself();
+    }
+
+    private void initMyself() {
+        rellenaComboOperaciones();
+    }
+
+    private void rellenaComboOperaciones() {
+        //ItemListener[] listener = jComboBoxOperaciones.getItemListeners();
+        //jComboBoxOperaciones.removeItemListener(listener[0]);
+        jComboBoxOperaciones.removeAllItems();
+        jComboBoxOperaciones.addItem(new ComboOptionOperacion("Sumar", Operaciones.SUMAR));
+        jComboBoxOperaciones.addItem(new ComboOptionOperacion("Restar", Operaciones.RESTAR));
+        jComboBoxOperaciones.addItem(new ComboOptionOperacion("Multiplicar", Operaciones.MULTIPLICAR));
+        jComboBoxOperaciones.addItem(new ComboOptionOperacion("Dividir", Operaciones.DIVIDIR));//        jComboBoxOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PACO", "MARIA", "ATLETI", "CAMPEON" }));
+        //jComboBoxOperaciones.addItemListener(listener[0]);
+        jComboBoxOperaciones.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                // TODO add your handling code here:
+        calcula(jTextOp1PC, jTextOp2PC, jLabelResultadoPC,
+                ((ComboOptionOperacion) evt.getItem()).getOperacion());
+            }
+        });
     }
 
     /**
@@ -259,13 +283,6 @@ public class Calculadora extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SUMAR", "RESTAR", "MULTIPLICAR", "DIVIDIR" }));
-        jComboBoxOperaciones.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBoxOperacionesItemStateChanged(evt);
-            }
-        });
-
         jLabelResultadoPC.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
 
         javax.swing.GroupLayout jPanelComboLayout = new javax.swing.GroupLayout(jPanelCombo);
@@ -281,7 +298,7 @@ public class Calculadora extends javax.swing.JFrame {
                 .addComponent(jComboBoxOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelResultadoPC, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanelComboLayout.setVerticalGroup(
             jPanelComboLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,15 +365,14 @@ public class Calculadora extends javax.swing.JFrame {
 
     private void jTextOp1PBFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextOp1PBFocusGained
         // TODO add your handling code here:
-         ponerBlancaTextField((JTextField) evt.getSource());
+        ponerBlancaTextField((JTextField) evt.getSource());
     }//GEN-LAST:event_jTextOp1PBFocusGained
 //</editor-fold>
-    
-    
+
+
     private void jButtonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCalcularActionPerformed
-        // TODO add your handling code here:
-               
-        calcula(jTextOp1PR, jTextOp2PR, jLabelResultadoPR, 
+
+        calcula(jTextOp1PR, jTextOp2PR, jLabelResultadoPR,
                 Operaciones.valueOf(btGroupOperaciones.getSelection().getActionCommand()),
                 jCheckBoxDecimales.isSelected());
     }//GEN-LAST:event_jButtonCalcularActionPerformed
@@ -381,20 +397,13 @@ public class Calculadora extends javax.swing.JFrame {
         ponerBlancaTextField((JTextField) evt.getSource());
     }//GEN-LAST:event_jTextOp2PCFocusGained
 
-    private void jComboBoxOperacionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxOperacionesItemStateChanged
-        // TODO add your handling code here:
-        calcula(jTextOp1PC, jTextOp2PC, jLabelResultadoPC, 
-                Operaciones.valueOf((String)evt.getItem()));
-    }//GEN-LAST:event_jComboBoxOperacionesItemStateChanged
-
     private double op1 = 0;
     private double op2 = 0;
 
-    private void ponerBlancaTextField(JTextField jTextOp)
-    {
+    private void ponerBlancaTextField(JTextField jTextOp) {
         jTextOp.setBackground(Color.white);
     }
-    
+
     private boolean compruebaOperando1(JTextField jTextOp, boolean decimales) {
         boolean error = false;
         try {

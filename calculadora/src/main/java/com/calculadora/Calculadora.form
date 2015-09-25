@@ -337,7 +337,7 @@
                       <Component id="jComboBoxOperaciones" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabelResultadoPC" min="-2" pref="193" max="-2" attributes="0"/>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace pref="76" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -380,17 +380,9 @@
             <Component class="javax.swing.JComboBox" name="jComboBoxOperaciones">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="SUMAR"/>
-                    <StringItem index="1" value="RESTAR"/>
-                    <StringItem index="2" value="MULTIPLICAR"/>
-                    <StringItem index="3" value="DIVIDIR"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jComboBoxOperacionesItemStateChanged"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelResultadoPC">
               <Properties>
