@@ -40,6 +40,8 @@ public class Calculadora extends javax.swing.JFrame {
         jTextOp1PC.addFocusListener(fa);
         jTextOp2PC.addFocusListener(fa);
         
+        jButtonDividir.setName(Constantes.BUTTON_DIVIDIR);
+        
     }
 
     private void rellenaComboOperaciones() {
@@ -96,12 +98,14 @@ public class Calculadora extends javax.swing.JFrame {
 
         jTabbedCalculadora.setName("jTabbedCalculadora"); // NOI18N
 
+        jTextOp1PB.setName("jTextOp1PB"); // NOI18N
         jTextOp1PB.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextOp1PBFocusGained(evt);
             }
         });
 
+        jTextOp2PB.setName("jTextOp2PB"); // NOI18N
         jTextOp2PB.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextOp2PBFocusGained(evt);
@@ -124,6 +128,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         jButtonMultiplicar.setText("Multiplicar");
+        jButtonMultiplicar.setName("jButtonMultiplicar"); // NOI18N
         jButtonMultiplicar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonMultiplicarActionPerformed(evt);
@@ -138,6 +143,7 @@ public class Calculadora extends javax.swing.JFrame {
         });
 
         jLabelResultadoPB.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
+        jLabelResultadoPB.setName("jLabelResultadoPB"); // NOI18N
 
         javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
         jPanelBotones.setLayout(jPanelBotonesLayout);

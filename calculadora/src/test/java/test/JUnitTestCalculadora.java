@@ -6,14 +6,17 @@
 package test;
 
 import com.calculadora.Calculadora;
+import com.calculadora.Constantes;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.fest.swing.fixture.FrameFixture;
 import org.fest.swing.fixture.JButtonFixture;
+import org.fest.swing.fixture.JLabelFixture;
 import org.fest.swing.fixture.JOptionPaneFixture;
 import org.fest.swing.fixture.JTabbedPaneFixture;
+import org.fest.swing.fixture.JTextComponentFixture;
 import static org.hamcrest.CoreMatchers.is;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -27,18 +30,18 @@ import static org.junit.Assert.*;
  * @author oscar
  */
 public class JUnitTestCalculadora {
-    
+
     public JUnitTestCalculadora() {
     }
     private FrameFixture frame;
-    
+
     @Before
     public void setUp() {
         frame = new FrameFixture(new Calculadora());
         frame.show();
-        
+
     }
-    
+
     @After
     public void tearDown() {
         frame.cleanUp();
@@ -63,7 +66,6 @@ public class JUnitTestCalculadora {
        
         
     }
-
     @Test
     public void sumaCorrectaPestaña() {
         JTabbedPaneFixture tabPanel = frame.tabbedPane("jTabbedCalculadora");
@@ -88,6 +90,22 @@ public class JUnitTestCalculadora {
        
         
     }
-
+    @Test
+    public void sumaCorrecta() {
+        JTextComponentFixture text = frame.textBox("jTextOp1PB");
+        text.setText("12");
+        JTextComponentFixture text2 = frame.textBox("jTextOp2PB");
+        text2.setText("12");
+        
+        JButtonFixture bt = frame.button(Constantes.BUTTON_DIVIDIR);
+        bt.click();
+        
+        JLabelFixture label = frame.label("jLabelResultadoPB");
+        
+        
+        assertEquals(label.target.getText(),"1");
+        
+       
+    }
 
 }

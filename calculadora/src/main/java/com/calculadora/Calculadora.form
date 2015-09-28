@@ -106,11 +106,17 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JTextField" name="jTextOp1PB">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jTextOp1PB" noResource="true"/>
+              </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextOp1PBFocusGained"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextOp2PB">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jTextOp2PB" noResource="true"/>
+              </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextOp2PBFocusGained"/>
               </Events>
@@ -135,6 +141,7 @@
             <Component class="javax.swing.JButton" name="jButtonMultiplicar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Multiplicar"/>
+                <Property name="name" type="java.lang.String" value="jButtonMultiplicar" noResource="true"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonMultiplicarActionPerformed"/>
@@ -155,6 +162,7 @@
                     <TitledBorder title="Resultado"/>
                   </Border>
                 </Property>
+                <Property name="name" type="java.lang.String" value="jLabelResultadoPB" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>
