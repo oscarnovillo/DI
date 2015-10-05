@@ -5,8 +5,11 @@
  */
 package com.swingimagenes;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -78,6 +81,11 @@ public class Imagenes extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -132,11 +140,34 @@ public class Imagenes extends javax.swing.JFrame {
         
         try {
             BufferedImage im = ImageIO.read(jFileChooser1.getSelectedFile());
-            jLabel1.setIcon(new ImageIcon(im.getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
+            Graphics2D g  = im.createGraphics();
+            g.fillRect(0, 0, 28, 28);
+            g.setColor(Color.red);
+            g.drawLine(0, 0, im.getWidth(), im.getHeight());
+           // jLabel1.setIcon(new ImageIcon(im.getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
+           jLabel1.setIcon(new ImageIcon(im));
         } catch (IOException ex) {
             Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage im = new BufferedImage(200,200,BufferedImage.TYPE_INT_RGB);
+        File f = new File("MyFile.jpg");
+        Graphics2D g  = im.createGraphics();
+        g.fillRect(0, 0, 28, 28);
+        g.setColor(Color.red);
+        g.drawLine(0, 0, im.getWidth(), im.getHeight());
+        
+        try {
+            ImageIO.write(im,"jpg", f);
+        } catch (IOException ex) {
+            Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
