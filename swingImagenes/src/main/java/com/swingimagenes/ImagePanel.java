@@ -16,11 +16,23 @@ import javax.swing.JPanel;
 public class ImagePanel extends JPanel{
 
     private BufferedImage image;
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+        this.repaint();
+    }
+    
+    
     
     
     @Override
     public void paint(Graphics g) {
-        super.paint(g); //To change body of generated methods, choose Tools | Templates.
+        super.paintComponent(g); 
+        g.drawImage(this.image,0, 0, null);
     }
     
     
