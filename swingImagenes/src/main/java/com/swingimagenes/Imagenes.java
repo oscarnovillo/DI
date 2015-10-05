@@ -11,10 +11,13 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import net.sf.image4j.codec.ico.ICODecoder;
 
 /**
  *
@@ -25,9 +28,16 @@ public class Imagenes extends javax.swing.JFrame {
     /**
      * Creates new form Imagenes
      */
-    public Imagenes(){
+    
+    public Imagenes() {
         initComponents();
-        
+        try {
+            String path = URLDecoder.decode(getClass().getResource("/images/test.ico").getPath(),"UTF8");
+            
+            jLabel1.setIcon(new javax.swing.ImageIcon(ICODecoder.read(new File(path)).get(0)));
+        } catch (IOException ex) {
+            Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -40,6 +50,7 @@ public class Imagenes extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        imagePanel1 = new com.swingimagenes.ImagePanel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -144,6 +155,8 @@ public class Imagenes extends javax.swing.JFrame {
             g.fillRect(0, 0, 28, 28);
             g.setColor(Color.red);
             g.drawLine(0, 0, im.getWidth(), im.getHeight());
+
+            //jMenu2.setIcon(new javax.swing.ImageIcon(ICODecoder.read(new File(getClass().getResource("/images/test.ico").getPath())).get(0)));
            // jLabel1.setIcon(new ImageIcon(im.getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
            jLabel1.setIcon(new ImageIcon(im));
         } catch (IOException ex) {
@@ -206,6 +219,7 @@ public class Imagenes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.swingimagenes.ImagePanel imagePanel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
