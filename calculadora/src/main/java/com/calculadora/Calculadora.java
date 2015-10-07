@@ -30,7 +30,7 @@ public class Calculadora extends javax.swing.JFrame {
         rellenaComboOperaciones();
         java.awt.event.FocusAdapter fa = new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-              ((JTextField) evt.getSource()).setBackground(Color.white);
+              ((JTextField) evt.getSource()).setBackground(Color.WHITE);
             }
         };
         jTextOp1PB.addFocusListener(fa);
