@@ -57,15 +57,23 @@ public class Imagenes extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        jMenuLabel = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         imagePanel2 = new com.swingimagenes.ImagePanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenuImagenes = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuLoad = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
+        jFileChooser1.setBackground(java.awt.Color.red);
         jFileChooser1.setDialogTitle("imagen");
 
         jMenuItem3.setText("jMenuItem3");
@@ -79,9 +87,19 @@ public class Imagenes extends javax.swing.JFrame {
         jMenuItem4.setText("jMenuItem4");
         jPopupMenu1.add(jMenuItem4);
 
+        jMenuLabel.setText("Accion Label");
+        jMenuLabel.setToolTipText("");
+        jMenuLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuLabelActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(jMenuLabel);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
+        jLabel1.setComponentPopupMenu(jPopupMenu2);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
         jButton1.setText("ver imagen");
@@ -107,7 +125,7 @@ public class Imagenes extends javax.swing.JFrame {
             .addGap(0, 253, Short.MAX_VALUE)
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
+        jMenuImagenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -115,16 +133,27 @@ public class Imagenes extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenuImagenes.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar.add(jMenuImagenes);
 
-        jMenu2.setText("screenShot");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuLoad.setText("Load");
+        jMenuLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
+                jMenuLoadActionPerformed(evt);
             }
         });
+
+        jMenuItem6.setText("jMenuItem6");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenuLoad.add(jMenuItem6);
+
+        jMenuItem7.setText("jMenuItem7");
+        jMenuLoad.add(jMenuItem7);
 
         jMenuItem2.setText("screenshot");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -132,11 +161,21 @@ public class Imagenes extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        jMenuLoad.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu2);
+        jMenuItem5.setText("jMenuItem5");
+        jMenuLoad.add(jMenuItem5);
 
-        setJMenuBar(jMenuBar1);
+        jMenu2.setText("jMenu2");
+
+        jMenuItem8.setText("jMenuItem8");
+        jMenu2.add(jMenuItem8);
+
+        jMenuLoad.add(jMenu2);
+
+        jMenuBar.add(jMenuLoad);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,6 +210,7 @@ public class Imagenes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         jFileChooser1.showOpenDialog(this);
+      
         
         try {
             BufferedImage im = ImageIO.read(jFileChooser1.getSelectedFile());
@@ -206,12 +246,12 @@ public class Imagenes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    private void jMenuLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLoadActionPerformed
         // TODO add your handling code here:
 
         
         
-    }//GEN-LAST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jMenuLoadActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
@@ -230,6 +270,15 @@ public class Imagenes extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuLabelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,13 +321,20 @@ public class Imagenes extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenu jMenuImagenes;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuLabel;
+    private javax.swing.JMenu jMenuLoad;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     // End of variables declaration//GEN-END:variables
 }
