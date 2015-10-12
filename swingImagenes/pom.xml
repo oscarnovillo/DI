@@ -9,6 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <mainClass>com.swingimagenes.view.Imagenes</mainClass>
     </properties>
     
     <build>
@@ -21,7 +22,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.swingimagenes.Imagenes</mainClass>
+                            <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -38,7 +39,7 @@
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
                         <manifest>
-                            <mainClass>com.swingimagenes.Imagenes</mainClass>
+                            <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
 
@@ -71,7 +72,7 @@
                             <outfile>${project.build.directory}/imagenes.exe</outfile>
                             <downloadUrl>http://java.com/download</downloadUrl>
                             <classPath>
-                                <mainClass>com.swingimagenes.Imagenes</mainClass>
+                                <mainClass>${mainClass}</mainClass>
                                 <preCp>anything</preCp>
                             </classPath>
                             <icon>src/main/resources/images/test.ico</icon>
