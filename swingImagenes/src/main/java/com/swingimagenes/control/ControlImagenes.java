@@ -5,6 +5,7 @@
  */
 package com.swingimagenes.control;
 
+import com.swingimagenes.DAO.ImagenesDAO;
 import com.swingimagenes.model.Imagen;
 import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
@@ -31,6 +32,16 @@ public class ControlImagenes {
         imagenes = new ArrayList<>();
     }
 
+    public void addImagen(Imagen im)
+    {
+        imagenes.add(im);
+    }
+    
+    public int getTamaño()
+    {
+        return imagenes.size();
+    }
+    
     public BufferedImage blurImagen(BufferedImage im) {
         BufferedImage bufferedImage = null;
         try {
@@ -65,12 +76,15 @@ public class ControlImagenes {
     
     public void saveImagenes() {
         //Guardar como JSON.
+        ImagenesDAO imagenDAO = new ImagenesDAO();
+        imagenDAO.save(imagenes);
 
     }
 
     public void loadImagenes() {
-        //Guardar como JSON.
-
+        //Cargar como JSON.
+        ImagenesDAO imagenDAO = new ImagenesDAO();
+        imagenes = imagenDAO.load();
     }
 
 }

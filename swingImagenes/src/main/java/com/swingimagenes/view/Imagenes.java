@@ -6,6 +6,7 @@
 package com.swingimagenes.view;
 
 import com.swingimagenes.control.ControlImagenes;
+import com.swingimagenes.model.Imagen;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -19,6 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import net.sf.image4j.codec.ico.ICODecoder;
 import net.sf.image4j.util.ImageUtil;
 import org.imgscalr.Scalr;
@@ -32,9 +36,11 @@ public class Imagenes extends javax.swing.JFrame {
     /**
      * Creates new form Imagenes
      */
-    
+    ControlImagenes ci = null;
     public Imagenes() {
         initComponents();
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        ci = new ControlImagenes();
         try {
             // Cargar un ico de windows.
             String path = URLDecoder.decode(getClass().getResource("/images/test.ico").getPath(),"UTF8");
@@ -65,10 +71,14 @@ public class Imagenes extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItemPrintScreen = new javax.swing.JMenuItem();
         jMenuItemBlur = new javax.swing.JMenuItem();
         greyScale = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
 
         jFileChooser1.setDialogTitle("imagen");
 
@@ -84,6 +94,11 @@ public class Imagenes extends javax.swing.JFrame {
         jPopupMenu1.add(jMenuItem4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
 
@@ -111,9 +126,10 @@ public class Imagenes extends javax.swing.JFrame {
             .addGap(0, 253, Short.MAX_VALUE)
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
+        jMenu1.setText("Archivo");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/load.png"))); // NOI18N
+        jMenuItem1.setText("Load");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -121,9 +137,35 @@ public class Imagenes extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/save.png"))); // NOI18N
+        jMenuItem2.setText("Save");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        jMenuItem6.setText("Add");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText("tamaño");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("screenShot");
+        jMenu2.setText("acciones");
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu2ActionPerformed(evt);
@@ -153,6 +195,14 @@ public class Imagenes extends javax.swing.JFrame {
             }
         });
         jMenu2.add(greyScale);
+
+        jMenuItem5.setText("pintar en Imagen");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
 
         jMenuBar1.add(jMenu2);
 
@@ -209,21 +259,7 @@ public class Imagenes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        BufferedImage im = new BufferedImage(200,200,BufferedImage.TYPE_INT_RGB);
-        File f = new File("MyFile.jpg");
-        Graphics2D g  = im.createGraphics();
-        g.fillRect(0, 0, 28, 28);
-        g.setColor(Color.red);
-        g.drawLine(0, 0, im.getWidth(), im.getHeight());
-        
-        try {
-            ImageIO.write(Scalr.rotate(im, Scalr.Rotation.FLIP_VERT,null ),"jpg", f);
-        } catch (IOException ex) {
-            Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+        ci.loadImagenes();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
@@ -253,18 +289,57 @@ public class Imagenes extends javax.swing.JFrame {
 
     private void jMenuItemBlurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBlurActionPerformed
         // TODO add your handling code here:
-        ControlImagenes ci = new ControlImagenes();
-        
         imagePanel2.setImage(ci.blurImagen(imagePanel2.getImage()));
-        
     }//GEN-LAST:event_jMenuItemBlurActionPerformed
 
     private void greyScaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greyScaleActionPerformed
-        // TODO add your handling code here:
-         ControlImagenes ci = new ControlImagenes();
-        
         imagePanel2.setImage(ci.greyScaleImagen(imagePanel2.getImage()));
     }//GEN-LAST:event_greyScaleActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage im = new BufferedImage(200,200,BufferedImage.TYPE_INT_RGB);
+        File f = new File("MyFile.jpg");
+        Graphics2D g  = im.createGraphics();
+        g.fillRect(0, 0, 28, 28);
+        g.setColor(Color.red);
+        g.drawLine(0, 0, im.getWidth(), im.getHeight());
+        
+        try {
+            ImageIO.write(Scalr.rotate(im, Scalr.Rotation.FLIP_VERT,null ),"jpg", f);
+        } catch (IOException ex) {
+            Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        ci.saveImagenes();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        //add imagen
+        Imagen imagen=new Imagen();
+        imagen.setPathImage("..");
+        imagen.setPathImageBlur("..Blur");
+        ci.addImagen(imagen);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+       jLabel1.setText(ci.getTamaño()+"");
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+         if (JOptionPane.showConfirmDialog(this, 
+            "Are you sure to close this window?", "Really Closing?", 
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+            dispose();
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -312,8 +387,12 @@ public class Imagenes extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItemBlur;
     private javax.swing.JMenuItem jMenuItemPrintScreen;
     private javax.swing.JPopupMenu jPopupMenu1;
