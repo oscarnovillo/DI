@@ -32,7 +32,13 @@ public class ImagePanel extends JPanel{
     @Override
     public void paint(Graphics g) {
         super.paintComponent(g); 
-        g.drawImage(this.image,0, 0, null);
+        int offsetX =0;
+        if (this.image!=null && this.image.getWidth()<this.getWidth())
+        {
+           offsetX = (this.getWidth() - this.image.getWidth()) /2; 
+        }
+        
+        g.drawImage(this.image,offsetX, 0, null);
     }
     
     

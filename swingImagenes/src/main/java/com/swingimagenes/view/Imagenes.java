@@ -69,6 +69,7 @@ public class Imagenes extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         imagePanel2 = new com.swingimagenes.view.ImagePanel();
         jPanelImagenes = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -134,6 +135,14 @@ public class Imagenes extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         getContentPane().add(jButton1, gridBagConstraints);
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jPanel3ComponentResized(evt);
+            }
+        });
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
         imagePanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         imagePanel2.setMinimumSize(new java.awt.Dimension(200, 200));
 
@@ -141,24 +150,24 @@ public class Imagenes extends javax.swing.JFrame {
         imagePanel2.setLayout(imagePanel2Layout);
         imagePanel2Layout.setHorizontalGroup(
             imagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 309, Short.MAX_VALUE)
         );
         imagePanel2Layout.setVerticalGroup(
             imagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 352, Short.MAX_VALUE)
         );
+
+        jPanel3.add(imagePanel2, java.awt.BorderLayout.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 6;
-        gridBagConstraints.gridheight = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.insets = new java.awt.Insets(18, 14, 18, 14);
-        getContentPane().add(imagePanel2, gridBagConstraints);
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridheight = 7;
+        getContentPane().add(jPanel3, gridBagConstraints);
 
+        jPanelImagenes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanelImagenes.setMinimumSize(new java.awt.Dimension(122, 122));
         jPanelImagenes.setLayout(new java.awt.CardLayout());
 
         jLabel2.setText("jLabel2");
@@ -296,9 +305,10 @@ public class Imagenes extends javax.swing.JFrame {
             g.drawLine(0, 0, im.getWidth(), im.getHeight());
 
             //jMenu2.setIcon(new javax.swing.ImageIcon(ICODecoder.read(new File(getClass().getResource("/images/test.ico").getPath())).get(0)));
-           // jLabel1.setIcon(new ImageIcon(im.getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
-           jLabel1.setIcon(new ImageIcon(im));
-           imagePanel2.setImage(im);
+           jLabel1.setIcon(new ImageIcon(im.getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
+           //jLabel1.setIcon(new ImageIcon(im));
+           
+           imagePanel2.setImage(Scalr.resize(im, Scalr.Mode.AUTOMATIC,imagePanel2.getWidth(),imagePanel2.getHeight(),null));
         } catch (IOException ex) {
             Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -390,6 +400,11 @@ public class Imagenes extends javax.swing.JFrame {
                 //.show(jPanelImagenes, "card8");
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void jPanel3ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentResized
+        // TODO add your handling code here:
+       imagePanel2.setImage(Scalr.resize(imagePanel2.getImage(), Scalr.Mode.AUTOMATIC,imagePanel2.getWidth(),imagePanel2.getHeight(),null));
+    }//GEN-LAST:event_jPanel3ComponentResized
+
     /**
      * @param args the command line arguments
      */
@@ -453,6 +468,7 @@ public class Imagenes extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemPrintScreen;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelImagenes;
     private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
