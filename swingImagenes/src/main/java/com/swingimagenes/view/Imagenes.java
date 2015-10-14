@@ -7,6 +7,7 @@ package com.swingimagenes.view;
 
 import com.swingimagenes.control.ControlImagenes;
 import com.swingimagenes.model.Imagen;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -60,6 +61,7 @@ public class Imagenes extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jFileChooser1 = new javax.swing.JFileChooser();
         jPopupMenu1 = new javax.swing.JPopupMenu();
@@ -68,6 +70,14 @@ public class Imagenes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         imagePanel2 = new com.swingimagenes.view.ImagePanel();
+        jPanelImagenes = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -79,6 +89,8 @@ public class Imagenes extends javax.swing.JFrame {
         jMenuItemBlur = new javax.swing.JMenuItem();
         greyScale = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         jFileChooser1.setDialogTitle("imagen");
 
@@ -94,13 +106,18 @@ public class Imagenes extends javax.swing.JFrame {
         jPopupMenu1.add(jMenuItem4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(400, 400));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridwidth = 4;
+        getContentPane().add(jLabel1, gridBagConstraints);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next21.png"))); // NOI18N
         jButton1.setText("ver imagen");
@@ -112,8 +129,13 @@ public class Imagenes extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        getContentPane().add(jButton1, gridBagConstraints);
 
         imagePanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        imagePanel2.setMinimumSize(new java.awt.Dimension(200, 200));
 
         javax.swing.GroupLayout imagePanel2Layout = new javax.swing.GroupLayout(imagePanel2);
         imagePanel2.setLayout(imagePanel2Layout);
@@ -123,8 +145,46 @@ public class Imagenes extends javax.swing.JFrame {
         );
         imagePanel2Layout.setVerticalGroup(
             imagePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 253, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(18, 14, 18, 14);
+        getContentPane().add(imagePanel2, gridBagConstraints);
+
+        jPanelImagenes.setLayout(new java.awt.CardLayout());
+
+        jLabel2.setText("jLabel2");
+        jPanel2.add(jLabel2);
+
+        jLabel3.setText("jLabel3");
+        jPanel2.add(jLabel3);
+
+        jLabel4.setText("jLabel4");
+        jPanel2.add(jLabel4);
+
+        jPanelImagenes.add(jPanel2, "card7");
+
+        jLabel5.setText("jLabel5");
+        jPanel1.add(jLabel5);
+
+        jLabel6.setText("jLabel6");
+        jPanel1.add(jLabel6);
+
+        jPanelImagenes.add(jPanel1, "card8");
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        getContentPane().add(jPanelImagenes, gridBagConstraints);
 
         jMenu1.setText("Archivo");
 
@@ -206,34 +266,19 @@ public class Imagenes extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        setJMenuBar(jMenuBar1);
+        jMenu3.setText("layout");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imagePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(105, 105, 105)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 138, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(imagePanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jMenuItem8.setText("cardlayout");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -241,6 +286,7 @@ public class Imagenes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         jFileChooser1.showOpenDialog(this);
+        
         
         try {
             BufferedImage im = ImageIO.read(jFileChooser1.getSelectedFile());
@@ -264,9 +310,6 @@ public class Imagenes extends javax.swing.JFrame {
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         // TODO add your handling code here:
-
-        
-        
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void jMenuItemPrintScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPrintScreenActionPerformed
@@ -341,6 +384,12 @@ public class Imagenes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        ((CardLayout)jPanelImagenes.getLayout()).next(jPanelImagenes);
+                //.show(jPanelImagenes, "card8");
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -383,8 +432,14 @@ public class Imagenes extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -393,8 +448,12 @@ public class Imagenes extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItemBlur;
     private javax.swing.JMenuItem jMenuItemPrintScreen;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelImagenes;
     private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 }
