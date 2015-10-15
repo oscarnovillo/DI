@@ -72,13 +72,15 @@ public class Imagenes extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         imagePanel2 = new com.swingimagenes.view.ImagePanel();
         jPanelImagenes = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+        jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -133,6 +135,7 @@ public class Imagenes extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
         getContentPane().add(jButton1, gridBagConstraints);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -162,13 +165,30 @@ public class Imagenes extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.gridheight = 7;
         getContentPane().add(jPanel3, gridBagConstraints);
 
         jPanelImagenes.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanelImagenes.setMinimumSize(new java.awt.Dimension(122, 122));
         jPanelImagenes.setLayout(new java.awt.CardLayout());
+
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+        jPanel1.add(filler3);
+
+        jLabel6.setText("jLabel6");
+        jPanel1.add(jLabel6);
+
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT);
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel4.setLayout(flowLayout1);
+
+        jLabel5.setText("jLabel5");
+        jPanel4.add(jLabel5);
+
+        jPanel1.add(jPanel4);
+
+        jPanelImagenes.add(jPanel1, "card8");
 
         jLabel2.setText("jLabel2");
         jPanel2.add(jLabel2);
@@ -180,14 +200,6 @@ public class Imagenes extends javax.swing.JFrame {
         jPanel2.add(jLabel4);
 
         jPanelImagenes.add(jPanel2, "card7");
-
-        jLabel5.setText("jLabel5");
-        jPanel1.add(jLabel5);
-
-        jLabel6.setText("jLabel6");
-        jPanel1.add(jLabel6);
-
-        jPanelImagenes.add(jPanel1, "card8");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -442,6 +454,7 @@ public class Imagenes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler3;
     private javax.swing.JMenuItem greyScale;
     private com.swingimagenes.view.ImagePanel imagePanel2;
     private javax.swing.JButton jButton1;
@@ -469,6 +482,7 @@ public class Imagenes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelImagenes;
     private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
