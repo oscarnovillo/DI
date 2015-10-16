@@ -5,6 +5,7 @@
  */
 package com.swingimagenes.view;
 
+import com.sun.xml.internal.ws.api.pipe.Fiber;
 import com.swingimagenes.control.ControlImagenes;
 import com.swingimagenes.model.Imagen;
 import java.awt.CardLayout;
@@ -17,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -38,16 +40,17 @@ public class Imagenes extends javax.swing.JFrame {
      * Creates new form Imagenes
      */
     ControlImagenes ci = null;
+
     public Imagenes() {
         initComponents();
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         ci = new ControlImagenes();
         try {
             // Cargar un ico de windows.
-            String path = URLDecoder.decode(getClass().getResource("/images/test.ico").getPath(),"UTF8");
-            
+            String path = URLDecoder.decode(getClass().getResource("/images/test.ico").getPath(), "UTF8");
+
             jLabel1.setIcon(new javax.swing.ImageIcon(ICODecoder.read(new File(path)).get(0)));
-   
+
         } catch (IOException ex) {
             Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,9 +79,11 @@ public class Imagenes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        imagePanel3 = new com.swingimagenes.view.ImagePanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        imagePanel1 = new com.swingimagenes.view.ImagePanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -179,6 +184,19 @@ public class Imagenes extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
         jPanel2.add(jLabel4);
 
+        javax.swing.GroupLayout imagePanel3Layout = new javax.swing.GroupLayout(imagePanel3);
+        imagePanel3.setLayout(imagePanel3Layout);
+        imagePanel3Layout.setHorizontalGroup(
+            imagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        imagePanel3Layout.setVerticalGroup(
+            imagePanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jPanel2.add(imagePanel3);
+
         jPanelImagenes.add(jPanel2, "card7");
 
         jLabel5.setText("jLabel5");
@@ -194,6 +212,19 @@ public class Imagenes extends javax.swing.JFrame {
         gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         getContentPane().add(jPanelImagenes, gridBagConstraints);
+
+        javax.swing.GroupLayout imagePanel1Layout = new javax.swing.GroupLayout(imagePanel1);
+        imagePanel1.setLayout(imagePanel1Layout);
+        imagePanel1Layout.setHorizontalGroup(
+            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        imagePanel1Layout.setVerticalGroup(
+            imagePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(imagePanel1, new java.awt.GridBagConstraints());
 
         jMenu1.setText("Archivo");
 
@@ -295,20 +326,22 @@ public class Imagenes extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         jFileChooser1.showOpenDialog(this);
-        
-        
+
         try {
             BufferedImage im = ImageIO.read(jFileChooser1.getSelectedFile());
-            Graphics2D g  = im.createGraphics();
+            Graphics2D g = im.createGraphics();
+            g.setColor(Color.PINK);
             g.fillRect(0, 0, 28, 28);
             g.setColor(Color.red);
             g.drawLine(0, 0, im.getWidth(), im.getHeight());
+            g.fillRect(0, 1, 27, 28);
+            g.rotate(90);
 
             //jMenu2.setIcon(new javax.swing.ImageIcon(ICODecoder.read(new File(getClass().getResource("/images/test.ico").getPath())).get(0)));
-           jLabel1.setIcon(new ImageIcon(im.getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
+            jLabel1.setIcon(new ImageIcon(im.getScaledInstance(28, 28, Image.SCALE_DEFAULT)));
            //jLabel1.setIcon(new ImageIcon(im));
-           
-           imagePanel2.setImage(Scalr.resize(im, Scalr.Mode.AUTOMATIC,imagePanel2.getWidth(),imagePanel2.getHeight(),null));
+
+            imagePanel2.setImage(Scalr.resize(im, Scalr.Mode.AUTOMATIC, imagePanel2.getWidth(), imagePanel2.getHeight(), null));
         } catch (IOException ex) {
             Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -324,13 +357,13 @@ public class Imagenes extends javax.swing.JFrame {
 
     private void jMenuItemPrintScreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPrintScreenActionPerformed
         // TODO add your handling code here:
-        BufferedImage im = new BufferedImage(this.getRootPane().getWidth(),this.getRootPane().getHeight(),BufferedImage.TYPE_INT_RGB);
-        File f = new File("screen.jpg");
-        Graphics2D g  = im.createGraphics();
+        BufferedImage im = new BufferedImage(this.getRootPane().getWidth(), this.getRootPane().getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = im.createGraphics();
         this.getRootPane().paint(g);
-        
+
         try {
-            ImageIO.write(im,"jpg", f);
+            File f = new File("screen.jpg");
+            ImageIO.write(Scalr.rotate(im, Scalr.Rotation.FLIP_VERT, null), "jpg", f);
         } catch (IOException ex) {
             Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -351,15 +384,15 @@ public class Imagenes extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        BufferedImage im = new BufferedImage(200,200,BufferedImage.TYPE_INT_RGB);
+        BufferedImage im = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
         File f = new File("MyFile.jpg");
-        Graphics2D g  = im.createGraphics();
+        Graphics2D g = im.createGraphics();
         g.fillRect(0, 0, 28, 28);
         g.setColor(Color.red);
         g.drawLine(0, 0, im.getWidth(), im.getHeight());
-        
+
         try {
-            ImageIO.write(Scalr.rotate(im, Scalr.Rotation.FLIP_VERT,null ),"jpg", f);
+            ImageIO.write(Scalr.rotate(im, Scalr.Rotation.FLIP_VERT, null), "jpg", f);
         } catch (IOException ex) {
             Logger.getLogger(Imagenes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -373,7 +406,7 @@ public class Imagenes extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         //add imagen
-        Imagen imagen=new Imagen();
+        Imagen imagen = new Imagen();
         imagen.setPathImage("..");
         imagen.setPathImageBlur("..Blur");
         ci.addImagen(imagen);
@@ -381,28 +414,28 @@ public class Imagenes extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-       jLabel1.setText(ci.getTamaño()+"");
+        jLabel1.setText(ci.getTamaño() + "");
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-         if (JOptionPane.showConfirmDialog(this, 
-            "Are you sure to close this window?", "Really Closing?", 
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+        if (JOptionPane.showConfirmDialog(this,
+                "Are you sure to close this window?", "Really Closing?",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
             dispose();
         }
     }//GEN-LAST:event_formWindowClosing
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        ((CardLayout)jPanelImagenes.getLayout()).next(jPanelImagenes);
-                //.show(jPanelImagenes, "card8");
+        ((CardLayout) jPanelImagenes.getLayout()).next(jPanelImagenes);
+        //.show(jPanelImagenes, "card8");
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jPanel3ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentResized
         // TODO add your handling code here:
-       imagePanel2.setImage(Scalr.resize(imagePanel2.getImage(), Scalr.Mode.AUTOMATIC,imagePanel2.getWidth(),imagePanel2.getHeight(),null));
+        imagePanel2.setImage(Scalr.resize(imagePanel2.getImage(), Scalr.Mode.AUTOMATIC, imagePanel2.getWidth(), imagePanel2.getHeight(), null));
     }//GEN-LAST:event_jPanel3ComponentResized
 
     /**
@@ -443,7 +476,9 @@ public class Imagenes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem greyScale;
+    private com.swingimagenes.view.ImagePanel imagePanel1;
     private com.swingimagenes.view.ImagePanel imagePanel2;
+    private com.swingimagenes.view.ImagePanel imagePanel3;
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;

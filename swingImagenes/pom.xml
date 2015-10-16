@@ -42,7 +42,6 @@
                             <mainClass>${mainClass}</mainClass>
                         </manifest>
                     </archive>
-
                 </configuration>
                 <executions>
                     <execution>
@@ -96,11 +95,8 @@
                     </execution>
                 </executions>
             </plugin>
-            
         </plugins>
     </build>    
-    
-    
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -148,7 +144,6 @@
             <artifactId>imgscalr-lib</artifactId>
             <version>4.2</version>
         </dependency>
-        
         <dependency>
             <groupId>org.jclarion</groupId>
             <artifactId>image4j</artifactId>
