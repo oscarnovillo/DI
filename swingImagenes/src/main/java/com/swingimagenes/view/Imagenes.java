@@ -416,7 +416,7 @@ public class Imagenes extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         //add imagen
-        Imagen imagen = new Imagen();
+        Imagen imagen = new Imagen("..");
         imagen.setPathImage("..");
         imagen.setPathImageBlur("..Blur");
         ci.addImagen(imagen);

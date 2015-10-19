@@ -15,6 +15,10 @@ public class Imagen {
     private String pathImageBlur;
     private String pathImageProhibida;
 
+    public Imagen(String pathImage) {
+        this.pathImage = pathImage;
+    }
+
     public String getPathImage() {
         return pathImage;
     }
