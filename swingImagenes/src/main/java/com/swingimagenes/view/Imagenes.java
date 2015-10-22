@@ -5,7 +5,6 @@
  */
 package com.swingimagenes.view;
 
-import com.sun.xml.internal.ws.api.pipe.Fiber;
 import com.swingimagenes.control.ControlImagenes;
 import com.swingimagenes.model.Imagen;
 import java.awt.CardLayout;
@@ -13,21 +12,16 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.awt.image.ConvolveOp;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.WindowConstants;
 import net.sf.image4j.codec.ico.ICODecoder;
-import net.sf.image4j.util.ImageUtil;
 import org.imgscalr.Scalr;
 
 /**
