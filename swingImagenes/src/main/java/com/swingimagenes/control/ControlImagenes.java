@@ -26,38 +26,38 @@ import javax.imageio.ImageIO;
  */
 public class ControlImagenes {
 
-    Carrousel imagenes ;
+    Carrousel carrouselImagenes ;
 
     public ControlImagenes() {
-        imagenes = new Carrousel();
+        carrouselImagenes = new Carrousel();
     }
 
     public void addImagen(Imagen im)
     {
-        imagenes.addImagen(im);
+        carrouselImagenes.addImagen(im);
     }
     
     public void siguienteImagen()
     {
-        imagenes.pasarCarrousel();
+        carrouselImagenes.pasarCarrousel();
     }
     
     public Imagen getCurrentImagen()
     {
-        Imagen im = imagenes.getImagen(imagenes.getCurrentIndexImagen());
+        Imagen im = carrouselImagenes.getImagen(carrouselImagenes.getCurrentIndexImagen());
         
         return im;
     }
     public Imagen getNextImagen()
     {
-        Imagen im = imagenes.getImagen(imagenes.getNextIndexImagen());
+        Imagen im = carrouselImagenes.getImagen(carrouselImagenes.getNextIndexImagen());
         
         return im;
     }
     
     public int getTamaño()
     {
-        return imagenes.getTamaño();
+        return carrouselImagenes.getTamaño();
     }
     
     public BufferedImage blurImagen(BufferedImage im) {
@@ -95,14 +95,14 @@ public class ControlImagenes {
     public void saveImagenes() {
         //Guardar como JSON.
         ImagenesDAO imagenDAO = new ImagenesDAO();
-        imagenDAO.save(imagenes.getImagenes());
+        imagenDAO.save(carrouselImagenes.getImagenes());
 
     }
 
     public void loadImagenes() {
         //Cargar como JSON.
         ImagenesDAO imagenDAO = new ImagenesDAO();
-        imagenes.setImagenes(imagenDAO.load());
+        carrouselImagenes.setImagenes(imagenDAO.load());
     }
 
 }
