@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mainClass>com.swingimagenes.view.Imagenes</mainClass>
+        <mainClass>com.swingimagenes.view.JFrameAplicacionImagenes</mainClass>
     </properties>
     
     <build>
@@ -74,7 +74,7 @@
                                 <mainClass>${mainClass}</mainClass>
                                 <preCp>anything</preCp>
                             </classPath>
-                            <icon>src/main/resources/images/test.ico</icon>
+                            <icon>src/main/resources/images/a.ico</icon>
                             <jre>
                                 <minVersion>1.6.0</minVersion>
                                 <jdkPreference>preferJre</jdkPreference>
