@@ -6,6 +6,7 @@
 package com.swingimagenes.DAO;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.swingimagenes.model.Imagen;
 import java.io.File;
@@ -24,6 +25,7 @@ public class ImagenesDAO {
         ArrayList<Imagen> imagenes = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             imagenes = mapper.readValue(new File("imagenes.json"), 
                     new TypeReference<ArrayList<Imagen>>() {
             });
