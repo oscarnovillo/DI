@@ -76,7 +76,7 @@ public class ColorRenderer extends JLabel
                 setBorder(unselectedBorder);
             }
         }
-        
+       
         setToolTipText("RGB value: " + newColor.getRed() + ", "
                                      + newColor.getGreen() + ", "
                                      + newColor.getBlue());
