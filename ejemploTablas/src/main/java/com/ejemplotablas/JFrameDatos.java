@@ -1,5 +1,7 @@
 package com.ejemplotablas;
 
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +19,9 @@ public class JFrameDatos extends javax.swing.JFrame {
      */
     public JFrameDatos() {
         initComponents();
+        jTable1.getModel().setValueAt(2,0,0);
+        DefaultTableModel model = ((DefaultTableModel)jTable1.getModel());
+        model.addRow(new Object[]{1,2,3,4});
     }
 
     /**
