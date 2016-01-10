@@ -136,8 +136,8 @@ public class TableDemo extends JPanel {
                                    + value.getClass() + ")");
             }
 
-            data[row][col] = value;
-            fireTableCellUpdated(row, col);
+            //data[row][col] = value;
+            //fireTableCellUpdated(row, col);
 
             if (DEBUG) {
                 System.out.println("New value of data:");
