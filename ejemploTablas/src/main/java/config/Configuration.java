@@ -9,6 +9,7 @@ import com.ejemplotablas.JFrameDatos;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,10 +40,16 @@ public class Configuration {
     }
     
     private String dburl;
+    private ArrayList<String> lista;
 
-    public Configuration(String dburl) {
-        this.dburl = dburl;
+    public ArrayList<String> getLista() {
+        return lista;
     }
+
+    public void setLista(ArrayList<String> lista) {
+        this.lista = lista;
+    }
+
     
     private Configuration() {
        Properties p = new Properties();

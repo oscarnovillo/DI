@@ -5,6 +5,7 @@
  */
 package dao;
 
+import config.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ import org.sqlite.SQLiteConfig;
  */
 public class DBConnection {
 
-    public static final String DB_URL = "jdbc:sqlite:juegos.db";
+    public static final String DB_URL = Configuration.getInstance().getDburl();
     public static final String DRIVER = "org.sqlite.JDBC";
 
     public Connection getConnection() throws ClassNotFoundException {

@@ -47,7 +47,7 @@ public class JFrameDatos extends javax.swing.JFrame {
     public JFrameDatos() {
         initComponents();
         control = new ControlJuegos();
-        System.out.println(Configuration.getInstance().getDburl());
+        System.out.println(Configuration.getInstance().getLista());
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("NOMBRE");
@@ -97,10 +97,15 @@ public class JFrameDatos extends javax.swing.JFrame {
 
             model.addRow(new Object[]{j.getId(), j.getNombre(), new Date()});
         }
+        
+        //filtros de filas
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
         jTable1.setRowSorter(sorter);
         RowFilter row = RowFilter.regexFilter("", 0);
         ((TableRowSorter) jTable1.getRowSorter()).setRowFilter(row);
+        
+        
+        //editor de fechas
         TableColumn dateColumn = jTable1.getColumnModel().getColumn(2);
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
         dateColumn.setCellEditor(new DatePickerCellEditor(sf));
@@ -110,6 +115,10 @@ public class JFrameDatos extends javax.swing.JFrame {
             }
         });
 
+        //ocultar columna
+        jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
+        jTable1.getColumnModel().getColumn(0).setMinWidth(0);
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
     }
 
     /**
