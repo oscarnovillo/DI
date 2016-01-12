@@ -9,6 +9,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.Juego;
 
@@ -70,8 +71,12 @@ public class JFrameDatos extends javax.swing.JFrame {
         for (Juego j : juegos) {
             model.addRow(new Object[]{j.getId(), j.getNombre()});
         }
-        RowFilter row = RowFilter.regexFilter("1", 0);
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+        jTable1.setRowSorter(sorter);
+        RowFilter row = RowFilter.regexFilter("", 0);
         ((TableRowSorter)jTable1.getRowSorter()).setRowFilter(row);
+        
+        
         
     }
 
