@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author oscar
@@ -13,10 +15,12 @@ public class Juego {
     
     private int id;
     private String nombre;
+    private Date fecha;
 
-    public Juego(int id, String nombre) {
+    public Juego(int id, String nombre,Date fecha) {
         this.id = id;
         this.nombre = nombre;
+        this.fecha = fecha;
     }
 
     public int getId() {
@@ -33,6 +37,14 @@ public class Juego {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
     

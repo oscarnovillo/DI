@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,13 +36,17 @@ public class JuegosDAO {
                 //Retrieve by column name
                 int id = rs.getInt("ID");
                 String nombre = rs.getString("NOMBRE");
+                
+                java.util.Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("fecha"));
                 //Display values
-                Juego j = new Juego(id,nombre);
+                Juego j = new Juego(id,nombre,fecha);
                 juegos.add(j);
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(JuegosDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(JuegosDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(JuegosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         finally

@@ -2,6 +2,7 @@ package com.ejemplotablas;
 
 import controller.ControlJuegos;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
@@ -36,6 +37,7 @@ public class JFrameDatos extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("NOMBRE");
+        model.addColumn("FECHA");
         
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -56,6 +58,12 @@ public class JFrameDatos extends javax.swing.JFrame {
                     case TableModelEvent.UPDATE:
 
                         System.out.println("U" + e.getColumn() + " " + e.getFirstRow());
+                        
+                       // Juego j = new Juego(jTable1.getModel().getValueAt(e.getFirstRow(), 0),
+                       //        jTable1.getModel().getValueAt(e.getFirstRow(), 1),
+                       //         jTable1.getModel().getValueAt(e.getFirstRow(), 2) );
+                        
+                        
                         System.out.println(jTable1.getModel().getValueAt(e.getFirstRow(), e.getColumn()));
                         break;
                     case TableModelEvent.DELETE:
@@ -67,9 +75,14 @@ public class JFrameDatos extends javax.swing.JFrame {
         });
         jTable1.setModel(model);
         ArrayList<Juego> juegos = control.getAllJuegos();
-
+        
+        int numFilas = model.getRowCount();
+        for (int i=0; i<numFilas; i++)
+            model.removeRow(0);
+                   
         for (Juego j : juegos) {
-            model.addRow(new Object[]{j.getId(), j.getNombre()});
+        
+            model.addRow(new Object[]{j.getId(), j.getNombre(),j.getFecha()});
         }
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
         jTable1.setRowSorter(sorter);
@@ -79,6 +92,8 @@ public class JFrameDatos extends javax.swing.JFrame {
         
         
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

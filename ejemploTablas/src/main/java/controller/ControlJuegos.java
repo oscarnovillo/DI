@@ -7,6 +7,7 @@ package controller;
 
 import dao.JuegosDAO;
 import java.util.ArrayList;
+import java.util.Date;
 import model.Juego;
 
 /**
@@ -21,6 +22,11 @@ public class ControlJuegos {
         JuegosDAO juegosDAO = new JuegosDAO();
         juegos = juegosDAO.getAllJuegos();
         return juegos;
+    }
+    
+    public void updateJuego(Juego j)
+    {
+        
     }
     
 }
