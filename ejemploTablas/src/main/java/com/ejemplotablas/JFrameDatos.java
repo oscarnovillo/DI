@@ -3,11 +3,13 @@ package com.ejemplotablas;
 import controller.ControlJuegos;
 import java.util.ArrayList;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.Juego;
 
 /*
@@ -33,6 +35,7 @@ public class JFrameDatos extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("NOMBRE");
+        
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -67,6 +70,9 @@ public class JFrameDatos extends javax.swing.JFrame {
         for (Juego j : juegos) {
             model.addRow(new Object[]{j.getId(), j.getNombre()});
         }
+        RowFilter row = RowFilter.regexFilter("1", 0);
+        ((TableRowSorter)jTable1.getRowSorter()).setRowFilter(row);
+        
     }
 
     /**
