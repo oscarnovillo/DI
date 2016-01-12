@@ -17,7 +17,9 @@ public class TextRender extends DefaultTableCellRenderer{
         super();
     }
    
+ 
     public void setValue(Object value) {
+        
         setText((value == null) ? "" : value+" JJJJ");
     }
     

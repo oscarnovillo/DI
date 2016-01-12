@@ -1,18 +1,32 @@
 package com.ejemplotablas;
 
+import config.Configuration;
 import controller.ControlJuegos;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.Juego;
+import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.table.DatePickerCellEditor;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,18 +47,18 @@ public class JFrameDatos extends javax.swing.JFrame {
     public JFrameDatos() {
         initComponents();
         control = new ControlJuegos();
-       
+        System.out.println(Configuration.getInstance().getDburl());
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("NOMBRE");
         model.addColumn("FECHA");
-        
+
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 System.out.println(jTable1.getSelectionModel().isSelectedIndex(e.getFirstIndex()));
                 System.out.println(jTable1.getSelectionModel().isSelectedIndex(e.getLastIndex()));
-                System.out.println(e.getFirstIndex()+" "+e.getLastIndex());
+                System.out.println(e.getFirstIndex() + " " + e.getLastIndex());
             }
         });
         model.addTableModelListener(new TableModelListener() {
@@ -58,12 +72,10 @@ public class JFrameDatos extends javax.swing.JFrame {
                     case TableModelEvent.UPDATE:
 
                         System.out.println("U" + e.getColumn() + " " + e.getFirstRow());
-                        
-                       // Juego j = new Juego(jTable1.getModel().getValueAt(e.getFirstRow(), 0),
-                       //        jTable1.getModel().getValueAt(e.getFirstRow(), 1),
-                       //         jTable1.getModel().getValueAt(e.getFirstRow(), 2) );
-                        
-                        
+
+                        // Juego j = new Juego(jTable1.getModel().getValueAt(e.getFirstRow(), 0),
+                        //        jTable1.getModel().getValueAt(e.getFirstRow(), 1),
+                        //         jTable1.getModel().getValueAt(e.getFirstRow(), 2) );
                         System.out.println(jTable1.getModel().getValueAt(e.getFirstRow(), e.getColumn()));
                         break;
                     case TableModelEvent.DELETE:
@@ -75,25 +87,30 @@ public class JFrameDatos extends javax.swing.JFrame {
         });
         jTable1.setModel(model);
         ArrayList<Juego> juegos = control.getAllJuegos();
-        
+
         int numFilas = model.getRowCount();
-        for (int i=0; i<numFilas; i++)
+        for (int i = 0; i < numFilas; i++) {
             model.removeRow(0);
-                   
+        }
+
         for (Juego j : juegos) {
-        
-            model.addRow(new Object[]{j.getId(), j.getNombre(),j.getFecha()});
+
+            model.addRow(new Object[]{j.getId(), j.getNombre(), new Date()});
         }
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
         jTable1.setRowSorter(sorter);
         RowFilter row = RowFilter.regexFilter("", 0);
-        ((TableRowSorter)jTable1.getRowSorter()).setRowFilter(row);
-        
-        
-        
+        ((TableRowSorter) jTable1.getRowSorter()).setRowFilter(row);
+        TableColumn dateColumn = jTable1.getColumnModel().getColumn(2);
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+        dateColumn.setCellEditor(new DatePickerCellEditor(sf));
+        dateColumn.setCellRenderer(new DefaultTableCellRenderer() {
+            public void setValue(Object value) {
+                setText(sf.format(value));
+            }
+        });
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
