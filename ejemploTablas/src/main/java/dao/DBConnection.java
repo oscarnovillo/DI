@@ -20,10 +20,10 @@ import org.sqlite.SQLiteConfig;
 public class DBConnection {
 
     public static final String DB_URL = Configuration.getInstance().getDburl();
-    public static final String DRIVER = "org.sqlite.JDBC";
+    
 
     public Connection getConnection() throws ClassNotFoundException {
-        //Class.forName(DRIVER);
+        
         Connection connection = null;
         try {
             SQLiteConfig config = new SQLiteConfig();

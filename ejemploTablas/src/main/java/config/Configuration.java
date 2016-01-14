@@ -58,14 +58,12 @@ public class Configuration {
         } catch (IOException ex) {
             Logger.getLogger(Configuration.class.getName()).log(Level.SEVERE, null, ex);
         }
-       // this.dburl = p.getProperty("dburl");
+       //this.dburl = p.getProperty("dburl");
         
         
         
         
     }
-
-   
 
     public String getDburl() {
         return dburl;
