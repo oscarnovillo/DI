@@ -5,7 +5,6 @@
  */
 package config;
 
-import com.ejemplotablas.JFrameDatos;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
