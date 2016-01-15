@@ -28,7 +28,7 @@ public class Configuration {
         if (config == null)
         {
             try {
-                config =  new Configuration();
+                //config =  new Configuration();
                 Yaml yaml = new Yaml();
                 config = (Configuration)yaml.loadAs(new FileInputStream("config.yml"),Configuration.class);
             } catch (FileNotFoundException ex) {

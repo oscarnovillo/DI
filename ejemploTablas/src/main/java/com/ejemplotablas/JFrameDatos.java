@@ -119,6 +119,7 @@ public class JFrameDatos extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
         jTable1.getColumnModel().getColumn(0).setMinWidth(0);
         jTable1.getColumnModel().getColumn(0).setPreferredWidth(0);
+        jTable1.getColumnModel().getColumn(0).setResizable(false);
     }
 
     /**
