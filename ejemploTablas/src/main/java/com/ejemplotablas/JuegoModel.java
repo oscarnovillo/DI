@@ -5,6 +5,7 @@
  */
 package com.ejemplotablas;
 
+import controller.ControlJuegos;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import model.Juego;
@@ -19,8 +20,10 @@ public class JuegoModel extends DefaultTableModel {
 
     public JuegoModel() {
         super();
+        controller.ControlJuegos cj = new ControlJuegos();
+        juegos = cj.getAllJuegos();
+        
         //cargar Las filas
-
     }
 
     @Override
@@ -51,8 +54,16 @@ public class JuegoModel extends DefaultTableModel {
     }
 
     @Override
-    public Object getValueAt(int i, int i1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object getValueAt(int row, int col) {
+        Juego jueo = juegos.get(row);
+        switch (col) {
+            case 0:
+                return jueo.getId();
+            case 1:
+                return jueo.getNombre();
+        }
+        
+        return null;
     }
 
     @Override

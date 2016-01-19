@@ -66,7 +66,7 @@ public class TableDemo extends JPanel {
     }
 
     class MyTableModel extends AbstractTableModel {
-        private String[] columnNames = {"f Name",
+        private String[] columnNames = {"MiMadre",
                                         "Last Name",
                                         "Sport",
                                         "# of Years",
