@@ -137,7 +137,7 @@ public class TableDemo extends JPanel {
             }
 
             //data[row][col] = value;
-            //fireTableCellUpdated(row, col);
+            fireTableCellUpdated(row, col);
 
             if (DEBUG) {
                 System.out.println("New value of data:");
