@@ -76,6 +76,8 @@ public class JFrameDatos extends javax.swing.JFrame {
                         // Juego j = new Juego(jTable1.getModel().getValueAt(e.getFirstRow(), 0),
                         //        jTable1.getModel().getValueAt(e.getFirstRow(), 1),
                         //         jTable1.getModel().getValueAt(e.getFirstRow(), 2) );
+                        Juego j = ((JuegoModel)jTable1.getModel()).getJuegoAtRow(e.getFirstRow());
+                        control.updateJuego(j);
                         System.out.println(jTable1.getModel().getValueAt(e.getFirstRow(), e.getColumn()));
                         break;
                     case TableModelEvent.DELETE:
