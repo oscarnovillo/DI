@@ -7,19 +7,21 @@ package com.ejemplotablas;
 
 import controller.ControlJuegos;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.TableColumnModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
+
 import model.Juego;
 
 /**
  *
  * @author oscar
  */
-public class JuegoModel extends DefaultTableModel implements TableColumnModel{
+public class JuegoModel extends AbstractTableModel {
 
     private ArrayList<Juego> juegos;
 
@@ -27,7 +29,7 @@ public class JuegoModel extends DefaultTableModel implements TableColumnModel{
         super();
         controller.ControlJuegos cj = new ControlJuegos();
         juegos = cj.getAllJuegos();
-        
+        juegos.add(0, new Juego(0, "", null));
         //cargar Las filas
     }
 
@@ -50,24 +52,23 @@ public class JuegoModel extends DefaultTableModel implements TableColumnModel{
 
     @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return juegos.size();
     }
 
     @Override
     public int getColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 3;
     }
 
-    public Juego getJuegoAtRow(int row)
-    {
+    public Juego getJuegoAtRow(int row) {
         return juegos.get(row);
     }
-    public void deleteJuego(Juego j)
-    {
-       juegos.remove(j);
-       fireTableDataChanged();
+
+    public void deleteJuego(Juego j) {
+        juegos.remove(j);
+        fireTableDataChanged();
     }
-    
+
     @Override
     public Object getValueAt(int row, int col) {
         Juego jueo = juegos.get(row);
@@ -76,104 +77,45 @@ public class JuegoModel extends DefaultTableModel implements TableColumnModel{
                 return jueo.getId();
             case 1:
                 return jueo.getNombre();
+            case 2:
+                return jueo.getFecha();
         }
-        
+
         return null;
     }
 
     @Override
-    public void setValueAt(Object o, int i, int i1) {
-        super.setValueAt(o, i, i1); //To change body of generated methods, choose Tools | Templates.
+    public void setValueAt(Object o, int row, int col) {
+        Juego j = juegos.get(row);
+        if (row > 0) {
+            switch (col) {
+                case 1:
+                    j.setNombre((String) o);
+                    break;
+                case 2:
+                    j.setFecha((Date) o);
+                    break;
+            }
+
+            fireTableCellUpdated(row, col);
+        }
+        else
+        {
+            switch (col) {
+                case 1:
+                    j.setNombre((String) o);
+                    break;
+                case 2:
+                    j.setFecha((Date) o);
+                    break;
+            }
+
+        }
     }
 
     @Override
-    public void addColumn(TableColumn tc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void removeColumn(TableColumn tc) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void moveColumn(int i, int i1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setColumnMargin(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Enumeration<TableColumn> getColumns() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getColumnIndex(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public TableColumn getColumn(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getColumnMargin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getColumnIndexAtX(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getTotalColumnWidth() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setColumnSelectionAllowed(boolean bln) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean getColumnSelectionAllowed() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int[] getSelectedColumns() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getSelectedColumnCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setSelectionModel(ListSelectionModel lsm) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ListSelectionModel getSelectionModel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addColumnModelListener(TableColumnModelListener tl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void removeColumnModelListener(TableColumnModelListener tl) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isCellEditable(int row, int column) {
+        return column != 0; //To change body of generated methods, choose Tools | Templates.
     }
 
 }
