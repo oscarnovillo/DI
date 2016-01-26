@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
@@ -55,9 +56,18 @@ public class JFrameDatos extends javax.swing.JFrame {
         jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                
+                if (((JuegoModel)jTable1.getModel()).isInsertando())
+                {
+                    JOptionPane.showConfirmDialog(JFrameDatos.this, "Q PASA");
+                }
+                else
+                {
                 System.out.println(jTable1.getSelectionModel().isSelectedIndex(e.getFirstIndex()));
                 System.out.println(jTable1.getSelectionModel().isSelectedIndex(e.getLastIndex()));
                 System.out.println(e.getFirstIndex() + " " + e.getLastIndex());
+                    
+                }
             }
         });
         
@@ -113,14 +123,14 @@ public class JFrameDatos extends javax.swing.JFrame {
         //filtros de filas
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
         jTable1.setRowSorter(sorter);
-        RowFilter row = RowFilter.regexFilter("g", 1);
-        RowFilter row2 = RowFilter.regexFilter("2014", 2);
-        RowFilter row3 = RowFilter.regexFilter("0", 0);
-        ArrayList<RowFilter<Object,Object>> filters = new ArrayList<RowFilter<Object,Object>>();
-        filters.add(row);
-        filters.add(row2);
-        filters.add(row3);
-        ((TableRowSorter) jTable1.getRowSorter()).setRowFilter(RowFilter.andFilter(filters));
+//        RowFilter row = RowFilter.regexFilter("g", 1);
+//        RowFilter row2 = RowFilter.regexFilter("2014", 2);
+//        RowFilter row3 = RowFilter.regexFilter("0", 0);
+//        ArrayList<RowFilter<Object,Object>> filters = new ArrayList<RowFilter<Object,Object>>();
+//        filters.add(row);
+//        filters.add(row2);
+//        filters.add(row3);
+//        ((TableRowSorter) jTable1.getRowSorter()).setRowFilter(RowFilter.andFilter(filters));
         
         
         
@@ -145,9 +155,12 @@ public class JFrameDatos extends javax.swing.JFrame {
             }
             
             
+            @Override
             public void setValue(Object value) {
                 if (value!=null)
                     setText(sf.format(value));
+                else
+                    setText("");
             }
         });
 
@@ -177,6 +190,12 @@ public class JFrameDatos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
+        jScrollPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jScrollPane1FocusLost(evt);
+            }
+        });
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -188,6 +207,11 @@ public class JFrameDatos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTable1FocusLost(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -200,7 +224,12 @@ public class JFrameDatos extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -232,6 +261,28 @@ public class JFrameDatos extends javax.swing.JFrame {
         // TODO add your handling code here:
         jButton1.setText(jComboBox1.getSelectedItem().toString());
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ((JuegoModel)jTable1.getModel()).insertarFila();
+        jTable1.setRowSelectionInterval(4, 4);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jScrollPane1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jScrollPane1FocusLost
+        // TODO add your handling code here:
+        if (((JuegoModel)jTable1.getModel()).isInsertando())
+                {
+                    JOptionPane.showConfirmDialog(JFrameDatos.this, "Q PASA");
+                }
+    }//GEN-LAST:event_jScrollPane1FocusLost
+
+    private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
+        // TODO add your handling code here:
+        if (((JuegoModel)jTable1.getModel()).isInsertando())
+                {
+                    JOptionPane.showConfirmDialog(JFrameDatos.this, "Q PASA");
+                }
+    }//GEN-LAST:event_jTable1FocusLost
 
     /**
      * @param args the command line arguments

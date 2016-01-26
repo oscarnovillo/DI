@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -25,6 +26,21 @@ public class JuegoModel extends AbstractTableModel {
 
     private ArrayList<Juego> juegos;
 
+    private boolean insertando = false;
+
+    public boolean isInsertando() {
+        return insertando;
+    }
+    
+    public void insertarFila()
+    {
+        juegos.add(new Juego(-1,"",null));
+        fireTableRowsInserted(juegos.size()-1, juegos.size()-1);
+        //fireTableDataChanged();
+        insertando = true;
+    }
+    
+    
     public JuegoModel() {
         super();
         controller.ControlJuegos cj = new ControlJuegos();
