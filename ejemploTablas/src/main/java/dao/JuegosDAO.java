@@ -20,7 +20,7 @@ import model.Juego;
  *
  * @author oscar
  */
-public class JuegosDAO {
+public class JuegosDAO implements IJuegosDAO{
 
     public ArrayList<Juego> getAllJuegos()  {
         ArrayList<Juego> juegos = new ArrayList<>();
@@ -51,7 +51,8 @@ public class JuegosDAO {
         }
         finally
         {
-            con.cerrarConexion(connection);
+            if (connection!=null)
+                con.cerrarConexion(connection);
         }
         return juegos;
     }

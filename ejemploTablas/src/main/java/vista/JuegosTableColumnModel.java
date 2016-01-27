@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ejemplotablas;
+package vista;
 
 import com.sun.javafx.scene.control.skin.TableColumnHeader;
 import java.util.Enumeration;

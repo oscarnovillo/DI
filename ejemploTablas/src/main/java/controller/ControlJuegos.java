@@ -5,6 +5,8 @@
  */
 package controller;
 
+import dao.FactoriaJuegos;
+import dao.IJuegosDAO;
 import dao.JuegosDAO;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,10 +18,12 @@ import model.Juego;
  */
 public class ControlJuegos {
     
+    
+    
     public ArrayList<Juego> getAllJuegos()
     {
         ArrayList<Juego> juegos =null;
-        JuegosDAO juegosDAO = new JuegosDAO();
+        IJuegosDAO juegosDAO = FactoriaJuegos.nuevoJuegoDAO();
         juegos = juegosDAO.getAllJuegos();
         return juegos;
     }

@@ -1,5 +1,6 @@
-package com.ejemplotablas;
+package vista;
 
+import vista.model.JuegoModel;
 import config.Configuration;
 import controller.ControlJuegos;
 import java.awt.Component;
@@ -72,6 +73,7 @@ public class JFrameDatos extends javax.swing.JFrame {
         });
         
         JuegoModel model =  new JuegoModel();
+        
         model.addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {

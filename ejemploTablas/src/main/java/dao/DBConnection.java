@@ -37,7 +37,8 @@ public class DBConnection {
     public void cerrarConexion( Connection connection )
     {
         try {
-            connection.close();
+            if (connection!=null)
+                connection.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
