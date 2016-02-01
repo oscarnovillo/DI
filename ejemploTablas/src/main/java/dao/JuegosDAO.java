@@ -39,7 +39,7 @@ public class JuegosDAO implements IJuegosDAO{
                 
                 java.util.Date fecha = new SimpleDateFormat("yyyy-MM-dd").parse(rs.getString("fecha"));
                 //Display values
-                Juego j = new Juego(id,nombre,fecha);
+                Juego j = new Juego(id,nombre,fecha,1);
                 juegos.add(j);
             }
         } catch (ClassNotFoundException ex) {

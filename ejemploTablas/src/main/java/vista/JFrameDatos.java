@@ -4,33 +4,22 @@ import vista.model.JuegoModel;
 import config.Configuration;
 import controller.ControlJuegos;
 import java.awt.Component;
-import java.awt.List;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.LinkedHashMap;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import model.Juego;
-import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.swingx.table.DatePickerCellEditor;
 
 /*
@@ -45,11 +34,16 @@ import org.jdesktop.swingx.table.DatePickerCellEditor;
 public class JFrameDatos extends javax.swing.JFrame {
 
     ControlJuegos control;
+    LinkedHashMap<Integer,String> tipos;
 
     /**
      * Creates new form JFrameDatos
      */
     public JFrameDatos() {
+        tipos = new LinkedHashMap<>();
+        tipos.put(1, "dfff");
+        tipos.put(2,"sdfsdf");
+                
         initComponents();
         control = new ControlJuegos();
         System.out.println(Configuration.getInstance().getLista());
@@ -166,6 +160,21 @@ public class JFrameDatos extends javax.swing.JFrame {
             }
         });
 
+        dateColumn = jTable1.getColumnModel().getColumn(3);
+        JComboBox comboBox = new JComboBox();
+        comboBox.addItem("dfff");
+        comboBox.addItem("sdfsdf");
+        dateColumn.setCellEditor(new DefaultCellEditor(comboBox));
+        dateColumn.setCellRenderer(new DefaultTableCellRenderer() {
+            
+            @Override
+            public void setValue(Object value) {
+                
+                    setText(tipos.get(value));
+            }
+        });
+
+        
         //ocultar columna
         jTable1.getColumnModel().getColumn(0).setMaxWidth(0);
         jTable1.getColumnModel().getColumn(0).setMinWidth(0);
@@ -181,16 +190,15 @@ public class JFrameDatos extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jScrollPane1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -216,15 +224,9 @@ public class JFrameDatos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
+        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jButton1.setText("add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -232,20 +234,10 @@ public class JFrameDatos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        getContentPane().add(jButton1, gridBagConstraints);
+        jPanel1.add(jButton1);
 
         jButton2.setText("jButton2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        getContentPane().add(jButton2, gridBagConstraints);
+        jPanel1.add(jButton2);
 
         jComboBox1.setEditable(true);
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -254,7 +246,9 @@ public class JFrameDatos extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1, new java.awt.GridBagConstraints());
+        jPanel1.add(jComboBox1);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.SOUTH);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -325,6 +319,7 @@ public class JFrameDatos extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

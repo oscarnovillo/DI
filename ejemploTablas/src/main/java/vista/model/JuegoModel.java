@@ -34,7 +34,7 @@ public class JuegoModel extends AbstractTableModel {
     
     public void insertarFila()
     {
-        juegos.add(new Juego(-1,"",null));
+        juegos.add(new Juego(-1,"",null,1));
         fireTableRowsInserted(juegos.size()-1, juegos.size()-1);
         //fireTableDataChanged();
         insertando = true;
@@ -45,7 +45,7 @@ public class JuegoModel extends AbstractTableModel {
         super();
         controller.ControlJuegos cj = new ControlJuegos();
         juegos = cj.getAllJuegos();
-        juegos.add(0, new Juego(0, "", null));
+        //juegos.add(0, new Juego(0, "", null,1));
         //cargar Las filas
     }
 
@@ -62,6 +62,9 @@ public class JuegoModel extends AbstractTableModel {
             case 2:
                 columnName = "FECHA";
                 break;
+                  case 3:
+                columnName = "ID";
+                break;
         }
         return columnName;
     }
@@ -73,7 +76,7 @@ public class JuegoModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     public Juego getJuegoAtRow(int row) {
@@ -95,6 +98,9 @@ public class JuegoModel extends AbstractTableModel {
                 return jueo.getNombre();
             case 2:
                 return jueo.getFecha();
+                                  case 3:
+                return jueo.getIdExt();
+               
         }
 
         return null;
@@ -110,6 +116,10 @@ public class JuegoModel extends AbstractTableModel {
                     break;
                 case 2:
                     j.setFecha((Date) o);
+                    break;
+                     case 3:
+                         int id = 1;
+                    j.setIdExt(id);
                     break;
             }
 

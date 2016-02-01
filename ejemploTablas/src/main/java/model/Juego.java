@@ -16,11 +16,22 @@ public class Juego {
     private int id;
     private String nombre;
     private Date fecha;
+    private int idExt;
 
-    public Juego(int id, String nombre,Date fecha) {
+    public int getIdExt() {
+        return idExt;
+    }
+
+    public void setIdExt(int idExt) {
+        this.idExt = idExt;
+    }
+    
+
+    public Juego(int id, String nombre,Date fecha,int idExt) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
+        this.idExt = 1;
     }
 
     public int getId() {
