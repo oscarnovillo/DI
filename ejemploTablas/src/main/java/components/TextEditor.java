@@ -25,7 +25,7 @@ public class TextEditor extends AbstractCellEditor
                          implements TableCellEditor{
 
     String text;
-    JLabel button;
+    JButton button;
     NewJDialog dialog;
     protected static final String EDIT = "edit";
     
@@ -35,25 +35,28 @@ public class TextEditor extends AbstractCellEditor
         //which is a button.
         //This button brings up the color chooser dialog,
         //which is the editor from the user's point of view.
-        button = new JLabel();
-//        button.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                if (EDIT.equals(e.getActionCommand())) {
-//            //The user has clicked the cell, so
-//            //bring up the dialog.
-//            //button.setBackground(currentColor);
-//            //colorChooser.setColor(currentColor);
-//            dialog.setVisible(true);
-//
-//            //Make the renderer reappear.
-//            fireEditingStopped();
-//
-//        } else { //User pressed dialog's "OK" button.
-//            text = "MMM";
-//        }
-//            }
-//        });
+        button = new JButton();
+        button.setActionCommand(EDIT);
+
+        button.setBorderPainted(false);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (EDIT.equals(e.getActionCommand())) {
+            //The user has clicked the cell, so
+            //bring up the dialog.
+            //button.setBackground(currentColor);
+            //colorChooser.setColor(currentColor);
+            dialog.setVisible(true);
+
+            //Make the renderer reappear.
+            fireEditingStopped();
+
+        } else { //User pressed dialog's "OK" button.
+            text = "MMM";
+        }
+            }
+        });
         //button.setBorderPainted(false);
 
         //Set up the dialog that the button brings up.
@@ -63,7 +66,7 @@ public class TextEditor extends AbstractCellEditor
     
     @Override
     public Object getCellEditorValue() {
-        return dialog.valor;
+        return text;
     }
 
     @Override

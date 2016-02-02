@@ -31,16 +31,14 @@ public class JuegoModel extends AbstractTableModel {
     public boolean isInsertando() {
         return insertando;
     }
-    
-    public void insertarFila()
-    {
-        juegos.add(new Juego(-1,"",null,1));
-        fireTableRowsInserted(juegos.size()-1, juegos.size()-1);
+
+    public void insertarFila() {
+        juegos.add(new Juego(-1, "", null, 1));
+        fireTableRowsInserted(juegos.size() - 1, juegos.size() - 1);
         //fireTableDataChanged();
         insertando = true;
     }
-    
-    
+
     public JuegoModel() {
         super();
         controller.ControlJuegos cj = new ControlJuegos();
@@ -62,7 +60,7 @@ public class JuegoModel extends AbstractTableModel {
             case 2:
                 columnName = "FECHA";
                 break;
-                  case 3:
+            case 3:
                 columnName = "ID";
                 break;
         }
@@ -98,9 +96,9 @@ public class JuegoModel extends AbstractTableModel {
                 return jueo.getNombre();
             case 2:
                 return jueo.getFecha();
-                                  case 3:
+            case 3:
                 return jueo.getIdExt();
-               
+
         }
 
         return null;
@@ -117,16 +115,14 @@ public class JuegoModel extends AbstractTableModel {
                 case 2:
                     j.setFecha((Date) o);
                     break;
-                     case 3:
-                         int id = 1;
+                case 3:
+                    int id = 1;
                     j.setIdExt(id);
                     break;
             }
 
             fireTableCellUpdated(row, col);
-        }
-        else
-        {
+        } else {
             switch (col) {
                 case 1:
                     j.setNombre((String) o);
