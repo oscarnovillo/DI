@@ -27,8 +27,7 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */ 
-
+ */
 package components;
 
 /*
@@ -36,7 +35,6 @@ package components;
  *   ColorRenderer.java
  *   ColorEditor.java
  */
-
 import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -53,15 +51,16 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
- * This is like TableDemo, except that it substitutes a
- * Favorite Color column for the Last Name column and specifies
- * a custom cell renderer and editor for the color data.
+ * This is like TableDemo, except that it substitutes a Favorite Color column
+ * for the Last Name column and specifies a custom cell renderer and editor for
+ * the color data.
  */
 public class TableDialogEditDemo extends JPanel {
+
     private boolean DEBUG = false;
 
     public TableDialogEditDemo() {
-        super(new GridLayout(1,0));
+        super(new GridLayout(1, 0));
 
         JTable table = new JTable(new MyTableModel());
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -72,40 +71,41 @@ public class TableDialogEditDemo extends JPanel {
 
         //Set up renderer and editor for the Favorite Color column.
         table.setDefaultRenderer(Color.class,
-                                 new ColorRenderer(true));
+                new ColorRenderer(true));
         table.setDefaultEditor(Color.class,
-                               new ColorEditor());
+                new ColorEditor());
         table.getColumnModel().getColumn(0).setCellRenderer(new TextRender());
         table.getColumnModel().getColumn(2).setCellEditor(new TextEditor());
         //Add the scroll pane to this panel.
         add(scrollPane);
-        JButton but = new JButton();
-        but.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, table.getValueAt(0,0));
-            }
-        });
-        add(but);
+//        JButton but = new JButton();
+//        but.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                JOptionPane.showMessageDialog(null, table.getValueAt(0,0));
+//            }
+//        });
+//        add(but);
     }
 
     class MyTableModel extends AbstractTableModel {
+
         private String[] columnNames = {"First Name",
-                                        "Favorite Color",
-                                        "Sport",
-                                        "# of Years",
-                                        "Vegetarian"};
+            "Favorite Color",
+            "Sport",
+            "# of Years",
+            "Vegetarian"};
         private Object[][] data = {
             {"Mary", new Color(153, 0, 153),
-             "Snowboarding", new Integer(5), new Boolean(false)},
+                "Snowboarding", new Integer(5), new Boolean(false)},
             {"Alison", new Color(51, 51, 153),
-             "Rowing", new Integer(3), new Boolean(true)},
+                "Rowing", new Integer(3), new Boolean(true)},
             {"Kathy", new Color(51, 102, 51),
-             "Knitting", new Integer(2), new Boolean(false)},
+                "Knitting", new Integer(2), new Boolean(false)},
             {"Sharon", Color.red,
-             "Speed reading", new Integer(20), new Boolean(true)},
+                "Speed reading", new Integer(20), new Boolean(true)},
             {"Philip", Color.pink,
-             "Pool", new Integer(10), new Boolean(false)}
+                "Pool", new Integer(10), new Boolean(false)}
         };
 
         public int getColumnCount() {
@@ -147,17 +147,18 @@ public class TableDialogEditDemo extends JPanel {
         public void setValueAt(Object value, int row, int col) {
             if (DEBUG) {
                 System.out.println("Setting value at " + row + "," + col
-                                   + " to " + value
-                                   + " (an instance of "
-                                   + value.getClass() + ")");
+                        + " to " + value
+                        + " (an instance of "
+                        + value.getClass() + ")");
             }
+            if (row >= 0) {
+                data[row][col] = value;
+                fireTableCellUpdated(row, col);
 
-            data[row][col] = value;
-            fireTableCellUpdated(row, col);
-
-            if (DEBUG) {
-                System.out.println("New value of data:");
-                printDebugData();
+                if (DEBUG) {
+                    System.out.println("New value of data:");
+                    printDebugData();
+                }
             }
         }
 
@@ -165,9 +166,9 @@ public class TableDialogEditDemo extends JPanel {
             int numRows = getRowCount();
             int numCols = getColumnCount();
 
-            for (int i=0; i < numRows; i++) {
+            for (int i = 0; i < numRows; i++) {
                 System.out.print("    row " + i + ":");
-                for (int j=0; j < numCols; j++) {
+                for (int j = 0; j < numCols; j++) {
                     System.out.print("  " + data[i][j]);
                 }
                 System.out.println();
@@ -177,9 +178,8 @@ public class TableDialogEditDemo extends JPanel {
     }
 
     /**
-     * Create the GUI and show it.  For thread safety,
-     * this method should be invoked from the
-     * event-dispatching thread.
+     * Create the GUI and show it. For thread safety, this method should be
+     * invoked from the event-dispatching thread.
      */
     private static void createAndShowGUI() {
         //Create and set up the window.

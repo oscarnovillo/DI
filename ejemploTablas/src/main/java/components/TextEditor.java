@@ -52,9 +52,7 @@ public class TextEditor extends AbstractCellEditor
             //Make the renderer reappear.
             fireEditingStopped();
 
-        } else { //User pressed dialog's "OK" button.
-            text = "MMM";
-        }
+        } 
             }
         });
         //button.setBorderPainted(false);
@@ -66,7 +64,9 @@ public class TextEditor extends AbstractCellEditor
     
     @Override
     public Object getCellEditorValue() {
-        return text;
+        if (dialog.valor=="")
+        this.cancelCellEditing();
+        return dialog.valor;
     }
 
     @Override
