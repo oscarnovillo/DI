@@ -65,7 +65,7 @@ public class TextEditor extends AbstractCellEditor
     @Override
     public Object getCellEditorValue() {
         if (dialog.valor=="")
-            fireEditingCanceled();
+           return text;
         return dialog.valor;
     }
 

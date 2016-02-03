@@ -151,7 +151,7 @@ public class TableDialogEditDemo extends JPanel {
                         + " (an instance of "
                         + value.getClass() + ")");
             }
-            if (row >= 0) {
+            if (row >= -10) {
                 data[row][col] = value;
                 fireTableCellUpdated(row, col);
 
