@@ -24,13 +24,17 @@ public class FXMLController implements Initializable {
     
     @FXML
     private void handleCombo(ActionEvent event) {
-        System.out.println("You clicked me!");
+        System.out.println(combo.getSelectionModel().getSelectedItem());
         label.setText("Hello World!");
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        combo.getItems().addAll(
+    "Option 4",
+    "Option 5",
+    "Option 6"
+);
     }    
 }
