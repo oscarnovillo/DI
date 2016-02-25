@@ -1,6 +1,0 @@
-## YAML Template.
-dburl: jdbc:sqlite:juegos.db
-lista:
-    - kk
-    - ll
-
